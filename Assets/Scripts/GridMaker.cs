@@ -2,11 +2,13 @@
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
+using UnityEngine.UI;
 
 public class GridMaker : MonoBehaviour
 {
     public Dictionary<ElementTypes, char> elementValues = new Dictionary<ElementTypes, char>();
     int rows, cols;
+    public Text levelText;
     public GameObject cellHolder;
     public List<LevelCreator> levelHolder = new List<LevelCreator>();
     public List<GameObject> cells = new List<GameObject>();
@@ -185,6 +187,7 @@ public class GridMaker : MonoBehaviour
          }
          else
          {
+             levelText.text = "Nível " + PlayerPrefs.GetInt("Level");
              SceneManager.LoadScene(SceneManager.GetActiveScene().name);
          }
      }
