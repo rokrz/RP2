@@ -850,7 +850,7 @@ MonoBehaviour:
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: "Porjetin RP2 Men\xF3"
+  m_Text: "Robotnik Defensor Num\xE9rico"
 --- !u!222 &1714519112
 CanvasRenderer:
   m_ObjectHideFlags: 0

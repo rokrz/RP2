@@ -8,7 +8,6 @@ using UnityEditor;
 public class LevelCreatorInspector : Editor
 {
     Dictionary<ElementTypes, Texture> textureHolder = new Dictionary<ElementTypes, Texture>();
-   // List<ElementValues> valuesHolder = new List<ElementValues>();
     private void OnEnable()
     {
         textureHolder.Add(ElementTypes.Robozin, (Texture)EditorGUIUtility.Load("Assets/Sprites/Robozin.png"));
@@ -31,24 +30,6 @@ public class LevelCreatorInspector : Editor
         textureHolder.Add(ElementTypes.BlocoFechaP, (Texture)EditorGUIUtility.Load("Assets/Sprites/Bloco_Monitor_FechaParenteses.png"));
         textureHolder.Add(ElementTypes.Empty, (Texture)EditorGUIUtility.Load("Assets/Sprites/empty.png"));
         textureHolder.Add(ElementTypes.Wall, (Texture)EditorGUIUtility.Load("Assets/Sprites/wall_2.png"));
-
-        /*valuesHolder.Add(ElementValues.Bloco0);
-        valuesHolder.Add(ElementValues.Bloco1);
-        valuesHolder.Add(ElementValues.Bloco2);
-        valuesHolder.Add(ElementValues.Bloco3);
-        valuesHolder.Add(ElementValues.Bloco4);
-        valuesHolder.Add(ElementValues.Bloco5);
-        valuesHolder.Add(ElementValues.Bloco6);
-        valuesHolder.Add(ElementValues.Bloco7);
-        valuesHolder.Add(ElementValues.Bloco8);
-        valuesHolder.Add(ElementValues.Bloco9);
-        valuesHolder.Add(ElementValues.BlocoSoma);
-        valuesHolder.Add(ElementValues.BlocoSubtrai);
-        valuesHolder.Add(ElementValues.BlocoMultiplica);
-        valuesHolder.Add(ElementValues.BlocoDivide);
-        valuesHolder.Add(ElementValues.BlocoIgual);
-        valuesHolder.Add(ElementValues.BlocoAbreP);
-        valuesHolder.Add(ElementValues.BlocoFechaP);*/
     }
     ElementTypes currentSelected = ElementTypes.Empty;
     public override void OnInspectorGUI()
@@ -98,9 +79,17 @@ public class LevelCreatorInspector : Editor
                 GUILayout.BeginHorizontal();
             }
         }
-
+        GUILayout.EndHorizontal();
         GUILayout.EndVertical();
 
+        GUILayout.Space(20);
+        GUILayout.BeginVertical();
+        if (GUILayout.Button("Save Level", GUILayout.Width(100), GUILayout.Height(50)))
+        {
+            EditorUtility.SetDirty(target);
+            AssetDatabase.SaveAssets();
+        }
+        GUILayout.EndVertical();
 
     }
 }

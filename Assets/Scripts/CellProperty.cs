@@ -87,9 +87,8 @@ public class CellProperty : MonoBehaviour
     public void ChangeSprite()
     {
         Sprite s = GridMaker.instance.spriteLibrary.Find(x => x.element == element).sprite;
-        
         spriteRenderer.sprite = s;
-
+        
         if (isPlayer || isPushable)
         {
             spriteRenderer.sortingOrder = 100;
@@ -234,7 +233,7 @@ public class CellProperty : MonoBehaviour
             if (equationPreEqual.Count == 0)
             {
                 equationPreEqual = new List<GameObject>();
-                for (int r = currentRow-1; r > 0; r--)
+                for (int r = currentRow-1; r >= 0; r--)
                 {
                     if (GridMaker.instance.IsTherePushableObjectAt(r, currentCol))
                     {
@@ -245,6 +244,13 @@ public class CellProperty : MonoBehaviour
                         break;
                     }
                 }
+                //List<GameObject> aux = new List<GameObject>();
+                //for(int j = equationPreEqual.Count-1; j >= 0; j--)
+                //{
+                //    aux.Add(equationPreEqual[j]);
+                //}
+                //equationPreEqual = aux;
+
                 for (int r = currentRow + 1; r < GridMaker.instance.Rows - 1; r++)
                 {
                     if (GridMaker.instance.IsTherePushableObjectAt(r, currentCol))
@@ -256,6 +262,7 @@ public class CellProperty : MonoBehaviour
                         break;
                     }
                 }
+                equationPostEqual.Reverse();
             }
             if (equationPreEqual.Count >= 1)
             {
@@ -270,6 +277,7 @@ public class CellProperty : MonoBehaviour
                     equation += GridMaker.instance.elementValues[equationPostEqual[j].GetComponent<CellProperty>().element];
                 }
                 string[] equationParts = equation.Split('=');
+                Debug.Log(equation);
                 if(equationParts[0].Length>0 && equationParts[1].Length > 0)
                 { 
                     Expression ex = new Expression(equationParts[0]);
