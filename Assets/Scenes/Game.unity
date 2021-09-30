@@ -205,6 +205,7 @@ GameObject:
   - component: {fileID: 817160330}
   - component: {fileID: 817160332}
   - component: {fileID: 817160331}
+  - component: {fileID: 817160333}
   m_Layer: 5
   m_Name: Text
   m_TagString: Untagged
@@ -271,6 +272,25 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 817160329}
   m_CullTransparentMesh: 1
+--- !u!95 &817160333
+Animator:
+  serializedVersion: 3
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 817160329}
+  m_Enabled: 1
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 9100000, guid: ba92fd34ed1b20842b725084239c8a5c, type: 2}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
+  m_KeepAnimatorControllerStateOnDisable: 0
 --- !u!1 &1567205084
 GameObject:
   m_ObjectHideFlags: 0
@@ -303,11 +323,7 @@ MonoBehaviour:
   cellHolder: {fileID: 7055120517331053062, guid: 471d19682450e0f4c9403822f602957d,
     type: 3}
   levelHolder:
-  - {fileID: 11400000, guid: a59cd1bdd99f69c4b85a7cf9bc5be290, type: 2}
-  - {fileID: 11400000, guid: ae507f8f4fcac7b45b9c35050eac2cec, type: 2}
-  - {fileID: 11400000, guid: 4561a30b9980c7841a4dcca1a5104a8c, type: 2}
-  - {fileID: 11400000, guid: b8b9a16a569c48d449befdd4c8cef63f, type: 2}
-  - {fileID: 11400000, guid: e8d6b04a2b8837c4c94414150bf61123, type: 2}
+  - {fileID: 11400000, guid: 17c502101bcf59341ac6a292857c60ef, type: 2}
   cells: []
   background: []
   spriteLibrary:

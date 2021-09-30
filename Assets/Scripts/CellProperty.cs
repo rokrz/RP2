@@ -70,6 +70,10 @@ public class CellProperty : MonoBehaviour
             isEqual = true;
             spriteRenderer.sortingOrder = 100;
         }
+        if (e == ElementTypes.Empty)
+        {
+            spriteRenderer.sortingOrder = 5;
+        }
     }
 
     public void Initialize()
@@ -138,6 +142,10 @@ public class CellProperty : MonoBehaviour
                 }
                 foreach (GameObject g in movingObject)
                 {
+                    if (g.GetComponent<CellProperty>().isPlayer)
+                    {
+                        transform.right = Vector3.right;
+                    }
                     g.transform.position = new Vector3(g.transform.position.x + 1, g.transform.position.y, g.transform.position.z);
                     g.GetComponent<CellProperty>().currentCol++;
                 }
@@ -159,6 +167,10 @@ public class CellProperty : MonoBehaviour
                 }
                 foreach (GameObject g in movingObject)
                 {
+                    if (g.GetComponent<CellProperty>().isPlayer)
+                    {
+                        transform.right = Vector3.left;
+                    }
                     g.transform.position = new Vector3(g.transform.position.x - 1, g.transform.position.y, g.transform.position.z);
                     g.GetComponent<CellProperty>().currentCol--;
                 }
@@ -180,6 +192,10 @@ public class CellProperty : MonoBehaviour
                 }
                 foreach (GameObject g in movingObject)
                 {
+                    if (g.GetComponent<CellProperty>().isPlayer)
+                    {
+                        transform.right = Vector3.up;
+                    }
                     g.transform.position = new Vector3(g.transform.position.x, g.transform.position.y + 1, g.transform.position.z);
                     g.GetComponent<CellProperty>().currentRow++;
                 }
@@ -201,6 +217,10 @@ public class CellProperty : MonoBehaviour
                 }
                 foreach (GameObject g in movingObject)
                 {
+                    if (g.GetComponent<CellProperty>().isPlayer)
+                    {
+                        transform.right = Vector3.down;
+                    }
                     g.transform.position = new Vector3(g.transform.position.x, g.transform.position.y - 1, g.transform.position.z);
                     g.GetComponent<CellProperty>().currentRow--;
                 }
@@ -279,6 +299,7 @@ public class CellProperty : MonoBehaviour
                     equation += GridMaker.instance.elementValues[equationPostEqual[j].GetComponent<CellProperty>().element];
                 }
                 string[] equationParts = equation.Split('=');
+                Debug.Log(equation);
                 if(equationParts[0].Length>0 && equationParts[1].Length > 0)
                 { 
                     Expression ex = new Expression(equationParts[0]);

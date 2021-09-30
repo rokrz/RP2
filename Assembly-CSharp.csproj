@@ -68,7 +68,6 @@
     <Compile Include="Assets\Scripts\GridMaker.cs" />
     <Compile Include="Assets\Scripts\LevelCreator.cs" />
     <Compile Include="Assets\Scripts\Menu.cs" />
-    <Compile Include="Assets\Scripts\PlayerMovement.cs" />
     <Compile Include="Assets\Scripts\UIManager.cs" />
     <Reference Include="UnityEngine.Purchasing">
       <HintPath>E:/Game Projects/RP2/Library/ScriptAssemblies/UnityEngine.Purchasing.dll</HintPath>
