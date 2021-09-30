@@ -58,6 +58,7 @@ public class CellProperty : MonoBehaviour
         if ((int)element>=3)
         {
             isPushable = true;
+            spriteRenderer.sortingOrder = 100;
         }
         if (e == ElementTypes.Robozin)
         {
@@ -67,6 +68,7 @@ public class CellProperty : MonoBehaviour
         if (e == ElementTypes.BlocoIgual)
         {
             isEqual = true;
+            spriteRenderer.sortingOrder = 100;
         }
     }
 
@@ -277,7 +279,6 @@ public class CellProperty : MonoBehaviour
                     equation += GridMaker.instance.elementValues[equationPostEqual[j].GetComponent<CellProperty>().element];
                 }
                 string[] equationParts = equation.Split('=');
-                Debug.Log(equation);
                 if(equationParts[0].Length>0 && equationParts[1].Length > 0)
                 { 
                     Expression ex = new Expression(equationParts[0]);

@@ -28,7 +28,7 @@ public class LevelCreatorInspector : Editor
         textureHolder.Add(ElementTypes.BlocoIgual, (Texture)EditorGUIUtility.Load("Assets/Sprites/Bloco_Monitor_Igual.png"));
         textureHolder.Add(ElementTypes.BlocoAbreP, (Texture)EditorGUIUtility.Load("Assets/Sprites/Bloco_Monitor_AbreParenteses.png"));
         textureHolder.Add(ElementTypes.BlocoFechaP, (Texture)EditorGUIUtility.Load("Assets/Sprites/Bloco_Monitor_FechaParenteses.png"));
-        textureHolder.Add(ElementTypes.Empty, (Texture)EditorGUIUtility.Load("Assets/Sprites/empty.png"));
+        textureHolder.Add(ElementTypes.Empty, (Texture)EditorGUIUtility.Load("Assets/Sprites/Empty.png"));
         textureHolder.Add(ElementTypes.Wall, (Texture)EditorGUIUtility.Load("Assets/Sprites/wall_2.png"));
     }
     ElementTypes currentSelected = ElementTypes.Empty;

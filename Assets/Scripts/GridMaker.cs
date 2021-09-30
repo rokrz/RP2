@@ -8,14 +8,15 @@ public class GridMaker : MonoBehaviour
 {
     public Dictionary<ElementTypes, char> elementValues = new Dictionary<ElementTypes, char>();
     int rows, cols;
-    public Text levelText;
     public GameObject cellHolder;
     public List<LevelCreator> levelHolder = new List<LevelCreator>();
     public List<GameObject> cells = new List<GameObject>();
+    public List<GameObject> background = new List<GameObject>();
     public List<SpriteLibrary> spriteLibrary = new List<SpriteLibrary>();
     public static GridMaker instance = null;
     public GameObject boundary;
     int currentLevel = 0;
+    private UIManager ui;
 
     public int Rows
     {
@@ -43,7 +44,12 @@ public class GridMaker : MonoBehaviour
     void Start()
     {
         initializeElementValues();
+        ui = GameObject.Find("Canvas").GetComponent<UIManager>();
         if (!PlayerPrefs.HasKey("Level"))
+        {
+            PlayerPrefs.SetInt("Level", 0);
+        }
+        if (PlayerPrefs.GetInt("Level") >= levelHolder.Count)
         {
             PlayerPrefs.SetInt("Level", 0);
         }
@@ -66,21 +72,22 @@ public class GridMaker : MonoBehaviour
                     Instantiate(boundary, new Vector3(gI, gJ, 0), Quaternion.identity);
             }
         }
+        int counterBg = 0;
+        for (int j = 0; j < levelHolder[currentLevel].level.Count; j++)
+        {
+            GameObject bg = Instantiate(cellHolder, new Vector3(counterBg % cols, counterBg / rows, 0), Quaternion.identity);
+            background.Add(bg);
+            ElementTypes currentElementBg = ElementTypes.Empty;
+            bg.GetComponent<CellProperty>().AssignInfo(counterBg / rows, counterBg % cols, currentElementBg);
+            counterBg++;
+        }
         int counter = 0;
         for (int i = 0; i < levelHolder[currentLevel].level.Count; i++)
         {
-            if (levelHolder[currentLevel].level[i] != ElementTypes.Empty)
-            {
-                GameObject g = Instantiate(cellHolder, new Vector3(counter % cols, counter / rows, 0), Quaternion.identity);
-                cells.Add(g);
-                ElementTypes currentElement = levelHolder[currentLevel].level[i];
-                //Pega o Valor do elemento
-                //ElementValues currentValue = ElementValues;
-                g.GetComponent<CellProperty>().AssignInfo(counter / rows, counter % cols, currentElement);
-                //Debug.Log( currentElement.ToString() + "R : " + i / rows + " C : " + i % cols);
-
-
-            }
+            GameObject g = Instantiate(cellHolder, new Vector3(counter % cols, counter / rows, 0), Quaternion.identity);
+            cells.Add(g);
+            ElementTypes currentElement = levelHolder[currentLevel].level[i];
+            g.GetComponent<CellProperty>().AssignInfo(counter / rows, counter % cols, currentElement);
             counter++;
         }
 
@@ -187,7 +194,8 @@ public class GridMaker : MonoBehaviour
          }
          else
          {
-             levelText.text = "Nível " + PlayerPrefs.GetInt("Level");
+            Debug.Log("Changing to level "+ PlayerPrefs.GetInt("Level"));
+             ui.updateCurrentLevelText();
              SceneManager.LoadScene(SceneManager.GetActiveScene().name);
          }
      }

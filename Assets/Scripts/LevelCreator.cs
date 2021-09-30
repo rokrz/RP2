@@ -34,13 +34,9 @@ public class LevelCreator : ScriptableObject
 
     [SerializeField]
     public List<ElementTypes> level = new List<ElementTypes>();
-    //Arranjo com os valores dos Blocos
-    //[SerializeField]
-    //public List<ElementValues> levelValues = new List<ElementValues>();
 
     public LevelCreator()
     {
         level = new List<ElementTypes>();
-        //levelValues = new List<ElementValues>();
     }
 }
