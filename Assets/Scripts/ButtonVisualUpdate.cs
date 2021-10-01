@@ -9,7 +9,7 @@ public class ButtonVisualUpdate : MonoBehaviour
     private Text buttonText;
     public void setTextColorOn()
     {
-        buttonText.color = new Color(0.02f, 0.89f, 0.05f);
+        buttonText.color = new Color(0.97f, 0.97f, 0.31f);
     }
     public void setTextColorOff()
     {
