@@ -230,7 +230,7 @@ public class CellProperty : MonoBehaviour
         {
             List<GameObject> equationPreEqual = new List<GameObject>();
             List<GameObject> equationPostEqual = new List<GameObject>();
-            for (int c =currentCol-1; c>0; c--)
+            for (int c =currentCol-1; c>=0; c--)
             {
                 if (GridMaker.instance.IsTherePushableObjectAt(currentRow, c))
                 {

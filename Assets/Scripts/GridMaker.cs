@@ -17,6 +17,8 @@ public class GridMaker : MonoBehaviour
     public GameObject boundary;
     int currentLevel = 0;
     private UIManager ui;
+    public Dictionary<string, Dialogue> dialogues;
+    public DialogueTrigger dialogueTrigger;
 
     public int Rows
     {
@@ -41,9 +43,11 @@ public class GridMaker : MonoBehaviour
             Destroy(this);
     }
   
+    //Método de inicializacao
     void Start()
     {
-        initializeElementValues();
+        InitializeElementValues();
+        InitializeDialogueElements();
         ui = GameObject.Find("Canvas").GetComponent<UIManager>();
         if (!PlayerPrefs.HasKey("Level"))
         {
@@ -58,9 +62,21 @@ public class GridMaker : MonoBehaviour
         rows = (int)Mathf.Sqrt(count);
         cols = rows;
 
+        StartDialogue(PlayerPrefs.GetInt("Level"));
+
         CreateGrid();
     }
 
+    //Método de update
+    void Update()
+    {
+        if (Input.GetKeyDown(KeyCode.R))
+        {
+            SceneManager.LoadScene(SceneManager.GetActiveScene().name);
+        }
+    }
+
+    //Desenha o Mapa
     public void CreateGrid()
     {
         //Coloca paredes
@@ -93,6 +109,7 @@ public class GridMaker : MonoBehaviour
 
     }
 
+    //Verifica se as coordenadas são Parada
     public bool IsStop(int r, int c, Vector2 dir)
     {
         bool isPush = false;
@@ -136,6 +153,7 @@ public class GridMaker : MonoBehaviour
         return true;
     }
 
+    //Retorna as Celulas do tipo e
     public List<CellProperty> GetAllCellsOf(ElementTypes e)
     {
         List<CellProperty> cellProp = new List<CellProperty>();
@@ -151,6 +169,7 @@ public class GridMaker : MonoBehaviour
 
     }
 
+    //verifica se há bloco empurravel na posicao [r,c]
     public bool IsTherePushableObjectAt(int r, int c)
     {
         List<GameObject> objectsAtRC = FindObjectsAt(r, c);
@@ -166,11 +185,13 @@ public class GridMaker : MonoBehaviour
 
     }
 
+    //retorna os objetos na posicao [r,c]
     public List<GameObject> FindObjectsAt(int r, int c)
     {
         return cells.FindAll(x => x != null && x.GetComponent<CellProperty>().CurrentRow == r && x.GetComponent<CellProperty>().CurrentCol == c);
     }
 
+    //retorna o objeto empurravel na posicao [r,c]
     public GameObject GetPushableObjectAt(int r, int c)
     {
         List<GameObject> objectsAtRC = FindObjectsAt(r, c);
@@ -186,6 +207,7 @@ public class GridMaker : MonoBehaviour
         return null;
     }
 
+    //passa para o proximo nivel
     public void NextLevel()
      {
          if (PlayerPrefs.GetInt("Level") >= levelHolder.Count)
@@ -196,20 +218,61 @@ public class GridMaker : MonoBehaviour
          {
             Debug.Log("Changing to level "+ PlayerPrefs.GetInt("Level"));
              ui.updateCurrentLevelText();
-             SceneManager.LoadScene(SceneManager.GetActiveScene().name);
+            StartDialogue(PlayerPrefs.GetInt("Level"));
+            SceneManager.LoadScene(SceneManager.GetActiveScene().name);
          }
      }
 
-    void Update()
+    /* 
+     * Parte responsável pela gestão de diálogos
+     */
+
+    //Verifica se existe um dialogo para o nivel desejado
+    public bool VerifyExistingDialogue(int currentLevel)
     {
-        if (Input.GetKeyDown(KeyCode.R))
+        if (dialogues.ContainsKey(currentLevel+ ""))
         {
-            SceneManager.LoadScene(SceneManager.GetActiveScene().name);
+            return true;
+        }
+        else
+        {
+            return false;
         }
     }
 
+    //Verifica e inicia os dialogos caso exista algum
+    public void StartDialogue(int currentLevel)
+    {
+        int key = currentLevel + 1;
+        if (VerifyExistingDialogue(key))
+        {
+            Dialogue dialogue = dialogues[key.ToString()];
+            dialogueTrigger.dialogue = dialogue;
+            dialogueTrigger.TriggerDialogue();
+        }
+    }
 
-    void initializeElementValues()
+    //carrega os dialgos para o Dict dialogues
+    public void LoadDialogues()
+    {
+        Dialogue dialogue = new Dialogue();
+        dialogue.name = "Equatron";
+        dialogue.sentences = new string[3];
+        dialogue.sentences[0] = "Olá, meu nome é Equatron, e estou aqui para guiá-lo pelos comandos do jogo";
+        dialogue.sentences[1] = "Primeiramente, para se movimentar, use as setas do teclado.";
+        dialogue.sentences[2] = "Monte igualdades para passar para o próximo nível";
+        dialogues.Add("1", dialogue);
+    }
+
+    //Carrega os elementos referentes aos dialogos
+    void InitializeDialogueElements()
+    {
+        dialogues = new Dictionary<string, Dialogue>();
+        LoadDialogues();
+    }
+
+    //Carrega os valores de cada elemento
+    void InitializeElementValues()
     {
         elementValues.Add(ElementTypes.Bloco0,'0');
         elementValues.Add(ElementTypes.Bloco1, '1');
