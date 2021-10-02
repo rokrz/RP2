@@ -1,4 +1,5 @@
-﻿using System.Collections;
+﻿using System;
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
@@ -19,6 +20,7 @@ public class GridMaker : MonoBehaviour
     private UIManager ui;
     public Dictionary<string, Dialogue> dialogues;
     public DialogueTrigger dialogueTrigger;
+    public Animator levelCompleteBox;
 
     public int Rows
     {
@@ -207,10 +209,25 @@ public class GridMaker : MonoBehaviour
         return null;
     }
 
+    //Carrega a caixa de nivel completo
+    public void LoadLevelCompleteBox()
+    {
+        levelCompleteBox.SetBool("isCompleted",true);
+    }
+
+    //Return to main menu
+    public void ReturnToMainMenu()
+    {
+        levelCompleteBox.SetBool("isCompleted", false);
+        SceneManager.LoadScene("Menu");
+    }
+
     //passa para o proximo nivel
     public void NextLevel()
      {
-         if (PlayerPrefs.GetInt("Level") >= levelHolder.Count)
+        levelCompleteBox.SetBool("isCompleted",false);
+        PlayerPrefs.SetInt("Level", PlayerPrefs.GetInt("Level") + 1);
+        if (PlayerPrefs.GetInt("Level") >= levelHolder.Count)
          {
              SceneManager.LoadScene("Menu");
          }
@@ -293,6 +310,7 @@ public class GridMaker : MonoBehaviour
         elementValues.Add(ElementTypes.BlocoMultiplica, '*');
     }
 
+    
 }
 [System.Serializable]
 public class SpriteLibrary

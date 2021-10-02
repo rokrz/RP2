@@ -313,8 +313,7 @@ public class CellProperty : MonoBehaviour
                         if (Convert.ToInt32(ex.Evaluate()) == Convert.ToInt32(ex2.Evaluate()))
                         {
                             Debug.Log("Player Won!");
-                            PlayerPrefs.SetInt("Level", PlayerPrefs.GetInt("Level") + 1);
-                            GridMaker.instance.NextLevel();
+                            GridMaker.instance.LoadLevelCompleteBox();
                         }
                     }
                 }
