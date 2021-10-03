@@ -241,7 +241,7 @@ public class CellProperty : MonoBehaviour
                     break;
                 }
             }
-            for (int c = currentCol+1; c <GridMaker.instance.Cols; c++)
+            for (int c = currentCol+1; c <=GridMaker.instance.Cols-1; c++)
             {
                 if(GridMaker.instance.IsTherePushableObjectAt(currentRow, c))
                 {
