@@ -273,7 +273,7 @@ public class CellProperty : MonoBehaviour
                 //}
                 //equationPreEqual = aux;
 
-                for (int r = currentRow + 1; r < GridMaker.instance.Rows - 1; r++)
+                for (int r = currentRow + 1; r <= GridMaker.instance.Rows - 1; r++)
                 {
                     if (GridMaker.instance.IsTherePushableObjectAt(r, currentCol))
                     {
