@@ -74,6 +74,7 @@
     <Compile Include="Assets\Scripts\LevelSelector.cs" />
     <Compile Include="Assets\Scripts\Menu.cs" />
     <Compile Include="Assets\Scripts\PersistMusic.cs" />
+    <Compile Include="Assets\Scripts\SpriteAnimator.cs" />
     <Compile Include="Assets\Scripts\UIManager.cs" />
     <Reference Include="UnityEngine.Purchasing">
       <HintPath>E:/Game Projects/RP2/Library/ScriptAssemblies/UnityEngine.Purchasing.dll</HintPath>

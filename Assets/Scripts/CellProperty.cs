@@ -14,6 +14,7 @@ public class CellProperty : MonoBehaviour
     bool isEqual;
     int currentRow, currentCol;
     SpriteRenderer spriteRenderer;
+    SpriteAnimator animator;
 
     public ElementTypes Element
     {
@@ -43,6 +44,7 @@ public class CellProperty : MonoBehaviour
     private void Awake()
     {
         spriteRenderer = GetComponent<SpriteRenderer>();
+        animator = GetComponent<SpriteAnimator>();
     }
 
     public void AssignInfo(int r, int c, ElementTypes e)
@@ -74,6 +76,28 @@ public class CellProperty : MonoBehaviour
         {
             spriteRenderer.sortingOrder = 5;
         }
+        if(e!=ElementTypes.Empty && e!=ElementTypes.Robozin && e != ElementTypes.Wall)
+        {
+            LoadSpriteAnimator(e);
+        }
+    }
+
+    public void LoadSpriteAnimator(ElementTypes e)
+    {
+        String spriteName = "Sprites/" + e.ToString()+"_Idle";
+        animator.spriteRenderer = spriteRenderer;
+        SpriteAnimator.AnimationTrigger animationTrigger = new SpriteAnimator.AnimationTrigger();
+        animationTrigger.name = "idle";
+        animationTrigger.frame = 0;
+        SpriteAnimator.Animation animation = new SpriteAnimator.Animation();
+        animation.fps = 4;
+        animation.name = "idle";
+        animation.triggers = new SpriteAnimator.AnimationTrigger[] { animationTrigger };
+        Sprite[] frames = Resources.LoadAll<Sprite>(spriteName); ;
+        animation.frames = frames;
+        SpriteAnimator.Animation[] animations = new SpriteAnimator.Animation[1] { animation };
+        animator.animations = animations;
+        animator.Play(animation.name);
     }
 
     public void Initialize()
@@ -299,7 +323,6 @@ public class CellProperty : MonoBehaviour
                     equation += GridMaker.instance.elementValues[equationPostEqual[j].GetComponent<CellProperty>().element];
                 }
                 string[] equationParts = equation.Split('=');
-                Debug.Log(equation);
                 if(equationParts[0].Length>0 && equationParts[1].Length > 0)
                 { 
                     Expression ex = new Expression(equationParts[0]);

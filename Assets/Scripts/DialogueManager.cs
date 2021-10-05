@@ -28,7 +28,6 @@ public class DialogueManager : MonoBehaviour
     {
         sentences = new Queue<string>();
         animator.SetBool("isOpen",true);
-        Debug.Log("Starting dialogue with: "+dialogue.name);
         sentences.Clear();
 
         nameText.text = dialogue.name;
@@ -67,6 +66,5 @@ public class DialogueManager : MonoBehaviour
     public void EndDialogue()
     {
         animator.SetBool("isOpen", false);
-        Debug.Log("Ending dialogue");
     }
 }

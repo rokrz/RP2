@@ -10,26 +10,26 @@ public class LevelCreatorInspector : Editor
     Dictionary<ElementTypes, Texture> textureHolder = new Dictionary<ElementTypes, Texture>();
     private void OnEnable()
     {
-        textureHolder.Add(ElementTypes.Robozin, (Texture)EditorGUIUtility.Load("Assets/Sprites/Robozin.png"));
-        textureHolder.Add(ElementTypes.Bloco1, (Texture)EditorGUIUtility.Load("Assets/Sprites/Bloco_Monitor_1.png"));
-        textureHolder.Add(ElementTypes.Bloco2, (Texture)EditorGUIUtility.Load("Assets/Sprites/Bloco_Monitor_2.png"));
-        textureHolder.Add(ElementTypes.Bloco3, (Texture)EditorGUIUtility.Load("Assets/Sprites/Bloco_Monitor_3.png"));
-        textureHolder.Add(ElementTypes.Bloco4, (Texture)EditorGUIUtility.Load("Assets/Sprites/Bloco_Monitor_4.png"));
-        textureHolder.Add(ElementTypes.Bloco5, (Texture)EditorGUIUtility.Load("Assets/Sprites/Bloco_Monitor_5.png"));
-        textureHolder.Add(ElementTypes.Bloco6, (Texture)EditorGUIUtility.Load("Assets/Sprites/Bloco_Monitor_6.png"));
-        textureHolder.Add(ElementTypes.Bloco7, (Texture)EditorGUIUtility.Load("Assets/Sprites/Bloco_Monitor_7.png"));
-        textureHolder.Add(ElementTypes.Bloco8, (Texture)EditorGUIUtility.Load("Assets/Sprites/Bloco_Monitor_8.png"));
-        textureHolder.Add(ElementTypes.Bloco9, (Texture)EditorGUIUtility.Load("Assets/Sprites/Bloco_Monitor_9.png"));
-        textureHolder.Add(ElementTypes.Bloco0, (Texture)EditorGUIUtility.Load("Assets/Sprites/Bloco_Monitor_0.png"));
-        textureHolder.Add(ElementTypes.BlocoSoma, (Texture)EditorGUIUtility.Load("Assets/Sprites/Bloco_Monitor_Soma.png"));
-        textureHolder.Add(ElementTypes.BlocoSubtrai, (Texture)EditorGUIUtility.Load("Assets/Sprites/Bloco_Monitor_Subtract.png"));
-        textureHolder.Add(ElementTypes.BlocoDivide, (Texture)EditorGUIUtility.Load("Assets/Sprites/Bloco_Monitor_Divide.png"));
-        textureHolder.Add(ElementTypes.BlocoMultiplica, (Texture)EditorGUIUtility.Load("Assets/Sprites/Bloco_Monitor_Multiplica.png"));
-        textureHolder.Add(ElementTypes.BlocoIgual, (Texture)EditorGUIUtility.Load("Assets/Sprites/Bloco_Monitor_Igual.png"));
-        textureHolder.Add(ElementTypes.BlocoAbreP, (Texture)EditorGUIUtility.Load("Assets/Sprites/Bloco_Monitor_AbreParenteses.png"));
-        textureHolder.Add(ElementTypes.BlocoFechaP, (Texture)EditorGUIUtility.Load("Assets/Sprites/Bloco_Monitor_FechaParenteses.png"));
-        textureHolder.Add(ElementTypes.Empty, (Texture)EditorGUIUtility.Load("Assets/Sprites/Empty.png"));
-        textureHolder.Add(ElementTypes.Wall, (Texture)EditorGUIUtility.Load("Assets/Sprites/wall_2.png"));
+        textureHolder.Add(ElementTypes.Robozin, (Texture)EditorGUIUtility.Load("Assets/Resources/Sprites/Robozin.png"));
+        textureHolder.Add(ElementTypes.Bloco1, (Texture)EditorGUIUtility.Load("Assets/Resources/Sprites/Bloco1_Idle.png"));
+        textureHolder.Add(ElementTypes.Bloco2, (Texture)EditorGUIUtility.Load("Assets/Resources/Sprites/Bloco2_Idle.png"));
+        textureHolder.Add(ElementTypes.Bloco3, (Texture)EditorGUIUtility.Load("Assets/Resources/Sprites/Bloco3_Idle.png"));
+        textureHolder.Add(ElementTypes.Bloco4, (Texture)EditorGUIUtility.Load("Assets/Resources/Sprites/Bloco4_Idle.png"));
+        textureHolder.Add(ElementTypes.Bloco5, (Texture)EditorGUIUtility.Load("Assets/Resources/Sprites/Bloco5_Idle.png"));
+        textureHolder.Add(ElementTypes.Bloco6, (Texture)EditorGUIUtility.Load("Assets/Resources/Sprites/Bloco6_Idle.png"));
+        textureHolder.Add(ElementTypes.Bloco7, (Texture)EditorGUIUtility.Load("Assets/Resources/Sprites/Bloco7_Idle.png"));
+        textureHolder.Add(ElementTypes.Bloco8, (Texture)EditorGUIUtility.Load("Assets/Resources/Sprites/Bloco8_Idle.png"));
+        textureHolder.Add(ElementTypes.Bloco9, (Texture)EditorGUIUtility.Load("Assets/Resources/Sprites/Bloco9_Idle.png"));
+        textureHolder.Add(ElementTypes.Bloco0, (Texture)EditorGUIUtility.Load("Assets/Resources/Sprites/Bloco0_Idle.png"));
+        textureHolder.Add(ElementTypes.BlocoSoma, (Texture)EditorGUIUtility.Load("Assets/Resources/Sprites/BlocoSoma_Idle.png"));
+        textureHolder.Add(ElementTypes.BlocoSubtrai, (Texture)EditorGUIUtility.Load("Assets/Resources/Sprites/BlocoSubtrai_Idle.png"));
+        textureHolder.Add(ElementTypes.BlocoDivide, (Texture)EditorGUIUtility.Load("Assets/Resources/Sprites/BlocoDivide_Idle.png"));
+        textureHolder.Add(ElementTypes.BlocoMultiplica, (Texture)EditorGUIUtility.Load("Assets/Resources/Sprites/BlocoMultiplica_Idle.png"));
+        textureHolder.Add(ElementTypes.BlocoIgual, (Texture)EditorGUIUtility.Load("Assets/Resources/Sprites/BlocoIgual_Idle.png"));
+        textureHolder.Add(ElementTypes.BlocoAbreP, (Texture)EditorGUIUtility.Load("Assets/Resources/Sprites/BlocoAbreP_Idle.png"));
+        textureHolder.Add(ElementTypes.BlocoFechaP, (Texture)EditorGUIUtility.Load("Assets/Resources/Sprites/BlocoFechaP_Idle.png"));
+        textureHolder.Add(ElementTypes.Empty, (Texture)EditorGUIUtility.Load("Assets/Resources/Sprites/Empty.png"));
+        textureHolder.Add(ElementTypes.Wall, (Texture)EditorGUIUtility.Load("Assets/Resources/Sprites/wall_2.png"));
     }
     ElementTypes currentSelected = ElementTypes.Empty;
     public override void OnInspectorGUI()
