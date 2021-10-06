@@ -1323,16 +1323,16 @@ MonoBehaviour:
   cellHolder: {fileID: 7055120517331053062, guid: 471d19682450e0f4c9403822f602957d,
     type: 3}
   levelHolder:
-  - {fileID: 11400000, guid: 72eecfd8d58371645a127fe84c30784f, type: 2}
+  - {fileID: 11400000, guid: 02b9ccddd9b7f4e45a1a45aef98647dc, type: 2}
   - {fileID: 11400000, guid: 9a7e501fbdbee0a46a298d3196393500, type: 2}
   - {fileID: 11400000, guid: e6fe80f53b48dcc43b13731f961a3218, type: 2}
   - {fileID: 11400000, guid: dd8a583a447dc3c4486b145ee0c60f62, type: 2}
   - {fileID: 11400000, guid: e360f9ebac518ee4b92a35a542ddbc41, type: 2}
   - {fileID: 11400000, guid: ae507f8f4fcac7b45b9c35050eac2cec, type: 2}
+  - {fileID: 11400000, guid: 2404a58e4d295d94289debddc80720cd, type: 2}
+  - {fileID: 11400000, guid: f9f360ece3fa20a4094cd9e0b3f59a90, type: 2}
   - {fileID: 11400000, guid: 4561a30b9980c7841a4dcca1a5104a8c, type: 2}
-  - {fileID: 11400000, guid: 02b9ccddd9b7f4e45a1a45aef98647dc, type: 2}
-  - {fileID: 11400000, guid: 02b9ccddd9b7f4e45a1a45aef98647dc, type: 2}
-  - {fileID: 11400000, guid: 02b9ccddd9b7f4e45a1a45aef98647dc, type: 2}
+  - {fileID: 11400000, guid: 72eecfd8d58371645a127fe84c30784f, type: 2}
   cells: []
   background: []
   spriteLibrary:
