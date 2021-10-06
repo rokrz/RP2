@@ -21,6 +21,7 @@ public class GridMaker : MonoBehaviour
     public Dictionary<string, Dialogue> dialogues;
     public DialogueTrigger dialogueTrigger;
     public Animator levelCompleteBox;
+    public bool isEndLevel { get; private set; }
 
     public int Rows
     {
@@ -48,6 +49,7 @@ public class GridMaker : MonoBehaviour
     //Método de inicializacao
     void Start()
     {
+        isEndLevel = false;
         InitializeElementValues();
         InitializeDialogueElements();
         ui = GameObject.Find("Canvas").GetComponent<UIManager>();
@@ -212,6 +214,7 @@ public class GridMaker : MonoBehaviour
     //Carrega a caixa de nivel completo
     public void LoadLevelCompleteBox()
     {
+        isEndLevel = true;
         levelCompleteBox.SetBool("isCompleted",true);
     }
 
@@ -225,6 +228,7 @@ public class GridMaker : MonoBehaviour
     //passa para o proximo nivel
     public void NextLevel()
      {
+        isEndLevel = false;
         levelCompleteBox.SetBool("isCompleted",false);
         PlayerPrefs.SetInt("Level", PlayerPrefs.GetInt("Level") + 1);
         if (PlayerPrefs.GetInt("Level") >= levelHolder.Count)

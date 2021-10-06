@@ -146,197 +146,200 @@ public class CellProperty : MonoBehaviour
 
     void Update()
     {
-        if (isPlayer)
+        if (!DialogueManager.instance.isDialoguing && !GridMaker.instance.isEndLevel)
         {
-            List<GameObject> movingObject = new List<GameObject>();
-            if (Input.GetKeyDown(KeyCode.RightArrow) && currentCol + 1 < GridMaker.instance.Cols && !GridMaker.instance.IsStop(currentRow, currentCol + 1, Vector2.right))
+            if (isPlayer)
             {
-                movingObject.Add(this.gameObject);
+                List<GameObject> movingObject = new List<GameObject>();
+                if (Input.GetKeyDown(KeyCode.RightArrow) && currentCol + 1 < GridMaker.instance.Cols && !GridMaker.instance.IsStop(currentRow, currentCol + 1, Vector2.right))
+                {
+                    movingObject.Add(this.gameObject);
 
-                for (int c = currentCol + 1; c < GridMaker.instance.Cols - 1; c++)
-                {
-                    if (GridMaker.instance.IsTherePushableObjectAt(currentRow, c))
+                    for (int c = currentCol + 1; c < GridMaker.instance.Cols - 1; c++)
                     {
-                        movingObject.Add(GridMaker.instance.GetPushableObjectAt(currentRow, c));
-                    }
-                    else
-                    {
-                        break;
-                    }
-                }
-                foreach (GameObject g in movingObject)
-                {
-                    if (g.GetComponent<CellProperty>().isPlayer)
-                    {
-                        transform.right = Vector3.right;
-                    }
-                    g.transform.position = new Vector3(g.transform.position.x + 1, g.transform.position.y, g.transform.position.z);
-                    g.GetComponent<CellProperty>().currentCol++;
-                }
-            }
-            else if (Input.GetKeyDown(KeyCode.LeftArrow) && currentCol - 1 >= 0 && !GridMaker.instance.IsStop(currentRow, currentCol - 1, Vector2.left))
-            {
-                movingObject.Add(this.gameObject);
-
-                for (int c = currentCol - 1; c > 0; c--)
-                {
-                    if (GridMaker.instance.IsTherePushableObjectAt(currentRow, c))
-                    {
-                        movingObject.Add(GridMaker.instance.GetPushableObjectAt(currentRow, c));
-                    }
-                    else
-                    {
-                        break;
-                    }
-                }
-                foreach (GameObject g in movingObject)
-                {
-                    if (g.GetComponent<CellProperty>().isPlayer)
-                    {
-                        transform.right = Vector3.left;
-                    }
-                    g.transform.position = new Vector3(g.transform.position.x - 1, g.transform.position.y, g.transform.position.z);
-                    g.GetComponent<CellProperty>().currentCol--;
-                }
-            }
-            else if (Input.GetKeyDown(KeyCode.UpArrow) && currentRow + 1 < GridMaker.instance.Rows && !GridMaker.instance.IsStop(currentRow + 1, currentCol, Vector2.up))
-            {
-                movingObject.Add(this.gameObject);
-
-                for (int r = currentRow + 1; r < GridMaker.instance.Rows - 1; r++)
-                {
-                    if (GridMaker.instance.IsTherePushableObjectAt(r, currentCol))
-                    {
-                        movingObject.Add(GridMaker.instance.GetPushableObjectAt(r, currentCol));
-                    }
-                    else
-                    {
-                        break;
-                    }
-                }
-                foreach (GameObject g in movingObject)
-                {
-                    if (g.GetComponent<CellProperty>().isPlayer)
-                    {
-                        transform.right = Vector3.up;
-                    }
-                    g.transform.position = new Vector3(g.transform.position.x, g.transform.position.y + 1, g.transform.position.z);
-                    g.GetComponent<CellProperty>().currentRow++;
-                }
-            }
-            else if (Input.GetKeyDown(KeyCode.DownArrow) && currentRow - 1 >= 0 && !GridMaker.instance.IsStop(currentRow - 1, currentCol, Vector2.down))
-            {
-                movingObject.Add(this.gameObject);
-
-                for (int r = currentRow - 1; r >= 0; r--)
-                {
-                    if (GridMaker.instance.IsTherePushableObjectAt(r, currentCol))
-                    {
-                        movingObject.Add(GridMaker.instance.GetPushableObjectAt(r, currentCol));
-                    }
-                    else
-                    {
-                        break;
-                    }
-                }
-                foreach (GameObject g in movingObject)
-                {
-                    if (g.GetComponent<CellProperty>().isPlayer)
-                    {
-                        transform.right = Vector3.down;
-                    }
-                    g.transform.position = new Vector3(g.transform.position.x, g.transform.position.y - 1, g.transform.position.z);
-                    g.GetComponent<CellProperty>().currentRow--;
-                }
-            }
-        }
-        if (isEqual)
-        {
-            List<GameObject> equationPreEqual = new List<GameObject>();
-            List<GameObject> equationPostEqual = new List<GameObject>();
-            for (int c =currentCol-1; c>=0; c--)
-            {
-                if (GridMaker.instance.IsTherePushableObjectAt(currentRow, c))
-                {
-                    equationPreEqual.Add(GridMaker.instance.GetPushableObjectAt(currentRow, c));
-                }
-                else
-                {
-                    break;
-                }
-            }
-            for (int c = currentCol+1; c <=GridMaker.instance.Cols-1; c++)
-            {
-                if(GridMaker.instance.IsTherePushableObjectAt(currentRow, c))
-                {
-                    equationPostEqual.Add(GridMaker.instance.GetPushableObjectAt(currentRow, c));
-                }
-                else
-                {
-                    break;
-                }
-            }
-            if (equationPreEqual.Count == 0)
-            {
-                equationPreEqual = new List<GameObject>();
-                for (int r = currentRow-1; r >= 0; r--)
-                {
-                    if (GridMaker.instance.IsTherePushableObjectAt(r, currentCol))
-                    {
-                        equationPreEqual.Add(GridMaker.instance.GetPushableObjectAt(r, currentCol));
-                    }
-                    else
-                    {
-                        break;
-                    }
-                }
-                //List<GameObject> aux = new List<GameObject>();
-                //for(int j = equationPreEqual.Count-1; j >= 0; j--)
-                //{
-                //    aux.Add(equationPreEqual[j]);
-                //}
-                //equationPreEqual = aux;
-
-                for (int r = currentRow + 1; r <= GridMaker.instance.Rows - 1; r++)
-                {
-                    if (GridMaker.instance.IsTherePushableObjectAt(r, currentCol))
-                    {
-                        equationPostEqual.Add(GridMaker.instance.GetPushableObjectAt(r, currentCol));
-                    }
-                    else
-                    {
-                        break;
-                    }
-                }
-                equationPostEqual.Reverse();
-            }
-            if (equationPreEqual.Count >= 1)
-            {
-                string equation = "";
-                for (int i =equationPreEqual.Count-1; i >=0; i--)
-                {
-                    equation += GridMaker.instance.elementValues[equationPreEqual[i].GetComponent<CellProperty>().element];
-                }
-                equation += "=";
-                for(int j = 0; j< equationPostEqual.Count; j++)
-                {
-                    equation += GridMaker.instance.elementValues[equationPostEqual[j].GetComponent<CellProperty>().element];
-                }
-                string[] equationParts = equation.Split('=');
-                if(equationParts[0].Length>0 && equationParts[1].Length > 0)
-                { 
-                    Expression ex = new Expression(equationParts[0]);
-                    Expression ex2 = new Expression(equationParts[1]);
-                    if (ex.HasErrors())
-                    {
-                        Debug.Log("Erro na equação");
-                    }
-                    else
-                    {
-                        if (Convert.ToInt32(ex.Evaluate()) == Convert.ToInt32(ex2.Evaluate()))
+                        if (GridMaker.instance.IsTherePushableObjectAt(currentRow, c))
                         {
-                            Debug.Log("Player Won!");
-                            GridMaker.instance.LoadLevelCompleteBox();
+                            movingObject.Add(GridMaker.instance.GetPushableObjectAt(currentRow, c));
+                        }
+                        else
+                        {
+                            break;
+                        }
+                    }
+                    foreach (GameObject g in movingObject)
+                    {
+                        if (g.GetComponent<CellProperty>().isPlayer)
+                        {
+                            transform.right = Vector3.right;
+                        }
+                        g.transform.position = new Vector3(g.transform.position.x + 1, g.transform.position.y, g.transform.position.z);
+                        g.GetComponent<CellProperty>().currentCol++;
+                    }
+                }
+                else if (Input.GetKeyDown(KeyCode.LeftArrow) && currentCol - 1 >= 0 && !GridMaker.instance.IsStop(currentRow, currentCol - 1, Vector2.left))
+                {
+                    movingObject.Add(this.gameObject);
+
+                    for (int c = currentCol - 1; c > 0; c--)
+                    {
+                        if (GridMaker.instance.IsTherePushableObjectAt(currentRow, c))
+                        {
+                            movingObject.Add(GridMaker.instance.GetPushableObjectAt(currentRow, c));
+                        }
+                        else
+                        {
+                            break;
+                        }
+                    }
+                    foreach (GameObject g in movingObject)
+                    {
+                        if (g.GetComponent<CellProperty>().isPlayer)
+                        {
+                            transform.right = Vector3.left;
+                        }
+                        g.transform.position = new Vector3(g.transform.position.x - 1, g.transform.position.y, g.transform.position.z);
+                        g.GetComponent<CellProperty>().currentCol--;
+                    }
+                }
+                else if (Input.GetKeyDown(KeyCode.UpArrow) && currentRow + 1 < GridMaker.instance.Rows && !GridMaker.instance.IsStop(currentRow + 1, currentCol, Vector2.up))
+                {
+                    movingObject.Add(this.gameObject);
+
+                    for (int r = currentRow + 1; r < GridMaker.instance.Rows - 1; r++)
+                    {
+                        if (GridMaker.instance.IsTherePushableObjectAt(r, currentCol))
+                        {
+                            movingObject.Add(GridMaker.instance.GetPushableObjectAt(r, currentCol));
+                        }
+                        else
+                        {
+                            break;
+                        }
+                    }
+                    foreach (GameObject g in movingObject)
+                    {
+                        if (g.GetComponent<CellProperty>().isPlayer)
+                        {
+                            transform.right = Vector3.up;
+                        }
+                        g.transform.position = new Vector3(g.transform.position.x, g.transform.position.y + 1, g.transform.position.z);
+                        g.GetComponent<CellProperty>().currentRow++;
+                    }
+                }
+                else if (Input.GetKeyDown(KeyCode.DownArrow) && currentRow - 1 >= 0 && !GridMaker.instance.IsStop(currentRow - 1, currentCol, Vector2.down))
+                {
+                    movingObject.Add(this.gameObject);
+
+                    for (int r = currentRow - 1; r >= 0; r--)
+                    {
+                        if (GridMaker.instance.IsTherePushableObjectAt(r, currentCol))
+                        {
+                            movingObject.Add(GridMaker.instance.GetPushableObjectAt(r, currentCol));
+                        }
+                        else
+                        {
+                            break;
+                        }
+                    }
+                    foreach (GameObject g in movingObject)
+                    {
+                        if (g.GetComponent<CellProperty>().isPlayer)
+                        {
+                            transform.right = Vector3.down;
+                        }
+                        g.transform.position = new Vector3(g.transform.position.x, g.transform.position.y - 1, g.transform.position.z);
+                        g.GetComponent<CellProperty>().currentRow--;
+                    }
+                }
+            }
+            if (isEqual)
+            {
+                List<GameObject> equationPreEqual = new List<GameObject>();
+                List<GameObject> equationPostEqual = new List<GameObject>();
+                for (int c = currentCol - 1; c >= 0; c--)
+                {
+                    if (GridMaker.instance.IsTherePushableObjectAt(currentRow, c))
+                    {
+                        equationPreEqual.Add(GridMaker.instance.GetPushableObjectAt(currentRow, c));
+                    }
+                    else
+                    {
+                        break;
+                    }
+                }
+                for (int c = currentCol + 1; c <= GridMaker.instance.Cols - 1; c++)
+                {
+                    if (GridMaker.instance.IsTherePushableObjectAt(currentRow, c))
+                    {
+                        equationPostEqual.Add(GridMaker.instance.GetPushableObjectAt(currentRow, c));
+                    }
+                    else
+                    {
+                        break;
+                    }
+                }
+                if (equationPreEqual.Count == 0)
+                {
+                    equationPreEqual = new List<GameObject>();
+                    for (int r = currentRow - 1; r >= 0; r--)
+                    {
+                        if (GridMaker.instance.IsTherePushableObjectAt(r, currentCol))
+                        {
+                            equationPreEqual.Add(GridMaker.instance.GetPushableObjectAt(r, currentCol));
+                        }
+                        else
+                        {
+                            break;
+                        }
+                    }
+                    //List<GameObject> aux = new List<GameObject>();
+                    //for(int j = equationPreEqual.Count-1; j >= 0; j--)
+                    //{
+                    //    aux.Add(equationPreEqual[j]);
+                    //}
+                    //equationPreEqual = aux;
+
+                    for (int r = currentRow + 1; r <= GridMaker.instance.Rows - 1; r++)
+                    {
+                        if (GridMaker.instance.IsTherePushableObjectAt(r, currentCol))
+                        {
+                            equationPostEqual.Add(GridMaker.instance.GetPushableObjectAt(r, currentCol));
+                        }
+                        else
+                        {
+                            break;
+                        }
+                    }
+                    equationPostEqual.Reverse();
+                }
+                if (equationPreEqual.Count >= 1)
+                {
+                    string equation = "";
+                    for (int i = equationPreEqual.Count - 1; i >= 0; i--)
+                    {
+                        equation += GridMaker.instance.elementValues[equationPreEqual[i].GetComponent<CellProperty>().element];
+                    }
+                    equation += "=";
+                    for (int j = 0; j < equationPostEqual.Count; j++)
+                    {
+                        equation += GridMaker.instance.elementValues[equationPostEqual[j].GetComponent<CellProperty>().element];
+                    }
+                    string[] equationParts = equation.Split('=');
+                    if (equationParts[0].Length > 0 && equationParts[1].Length > 0)
+                    {
+                        Expression ex = new Expression(equationParts[0]);
+                        Expression ex2 = new Expression(equationParts[1]);
+                        if (ex.HasErrors())
+                        {
+                            Debug.Log("Erro na equação");
+                        }
+                        else
+                        {
+                            if (Convert.ToInt32(ex.Evaluate()) == Convert.ToInt32(ex2.Evaluate()))
+                            {
+                                Debug.Log("Player Won!");
+                                GridMaker.instance.LoadLevelCompleteBox();
+                            }
                         }
                     }
                 }
