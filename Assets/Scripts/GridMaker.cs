@@ -9,13 +9,17 @@ public class GridMaker : MonoBehaviour
 {
     public Dictionary<ElementTypes, char> elementValues = new Dictionary<ElementTypes, char>();
     int rows, cols;
+    public String[] worldNames = { "Igual", "IgualI", "IgualH", "Soma", "Subtracao", "Multiplica", "Divisao" };
+    public Dictionary<String, int> levelsPerWorld = new Dictionary<string, int>();
     public GameObject cellHolder;
-    public List<LevelCreator> levelHolder = new List<LevelCreator>();
+    public Dictionary<String,List<LevelCreator>> worldHolder = new Dictionary<String, List<LevelCreator>>();
+    public List<LevelCreator> levelHolder;
     public List<GameObject> cells = new List<GameObject>();
     public List<GameObject> background = new List<GameObject>();
     public List<SpriteLibrary> spriteLibrary = new List<SpriteLibrary>();
     public static GridMaker instance = null;
     public GameObject boundary;
+    int currentWorld = 0;
     int currentLevel = 0;
     private UIManager ui;
     public Dictionary<string, Dialogue> dialogues;
@@ -51,29 +55,85 @@ public class GridMaker : MonoBehaviour
     {
         isEndLevel = false;
         InitializeElementValues();
+        loadLevelsPerWorld();
+        InitializeLevelMap();
         InitializeDialogueElements();
         ui = GameObject.Find("Canvas").GetComponent<UIManager>();
+        if (!PlayerPrefs.HasKey("World"))
+        {
+            PlayerPrefs.SetInt("World", 0);
+        }
         if (!PlayerPrefs.HasKey("Level"))
         {
             PlayerPrefs.SetInt("Level", 0);
         }
-        if (PlayerPrefs.GetInt("Level") >= levelHolder.Count)
+        if (PlayerPrefs.GetInt("World") >= worldNames.Length)
+        {
+            PlayerPrefs.SetInt("World", 0);
+        }
+        if (PlayerPrefs.GetInt("Level") >= worldHolder[worldNames[PlayerPrefs.GetInt("World")]].Count)
         {
             PlayerPrefs.SetInt("Level", 0);
         }
+        currentWorld = PlayerPrefs.GetInt("World");
         currentLevel = PlayerPrefs.GetInt("Level");
+        levelHolder = worldHolder[worldNames[currentWorld]];
+        Debug.Log(currentWorld + " " + currentLevel + " " + levelHolder.Count);
+        Debug.Log(levelHolder);
+        if (levelHolder[0] != null)
+        {
+            Debug.Log(levelHolder[0].level);
+        }
+        else
+        {
+            Debug.Log("Not yet");
+        }
         float count = levelHolder[currentLevel].level.Count;
         rows = (int)Mathf.Sqrt(count);
         cols = rows;
 
-        StartDialogue(PlayerPrefs.GetInt("Level"));
-
+        StartDialogue(worldNames[PlayerPrefs.GetInt("World")]+" "+(PlayerPrefs.GetInt("Level")+1));
+        ui.updateCurrentLevelText();
         CreateGrid();
+    }
+
+    void InitializeLevelMap()
+    {
+        Debug.Log("WorldNames size: "+worldNames.Length);
+        foreach(String worldName in worldNames){
+            List<LevelCreator> auxList = new List<LevelCreator>();
+            for (int i = 0; i < levelsPerWorld[worldName]; i++)
+            {
+                String levelName = "Levels/" + worldName + " " + (i+1);
+                Debug.Log(levelName);
+                LevelCreator lc = Resources.Load<LevelCreator>(levelName);
+                if(lc == null)
+                {
+                    Debug.Log("Loaded null level");
+                }
+                auxList.Add(lc);
+            }
+            Debug.Log(worldName+" has "+auxList.Count+" levels loaded");
+            worldHolder.Add(worldName, auxList);
+        }
+    }
+
+    void loadLevelsPerWorld()
+    {
+        foreach(String s in worldNames)
+        {
+            levelsPerWorld.Add(s,1);
+        }
     }
 
     //Método de update
     void Update()
     {
+        //Retirar para versão final
+        if (Input.GetKeyDown(KeyCode.N))
+        {
+            NextLevel();
+        }
         if (Input.GetKeyDown(KeyCode.R))
         {
             SceneManager.LoadScene(SceneManager.GetActiveScene().name);
@@ -233,13 +293,24 @@ public class GridMaker : MonoBehaviour
         PlayerPrefs.SetInt("Level", PlayerPrefs.GetInt("Level") + 1);
         if (PlayerPrefs.GetInt("Level") >= levelHolder.Count)
          {
-             SceneManager.LoadScene("Menu");
-         }
+            PlayerPrefs.SetInt("World",PlayerPrefs.GetInt("World")+1);
+            if (PlayerPrefs.GetInt("World") >= worldNames.Length)
+            {
+                SceneManager.LoadScene("Menu");
+            }
+            else
+            {
+                PlayerPrefs.SetInt("Level", 0);
+                levelHolder = worldHolder[worldNames[PlayerPrefs.GetInt("World")]];
+                SceneManager.LoadScene(SceneManager.GetActiveScene().name);
+            }
+             
+        }
          else
          {
             Debug.Log("Changing to level "+ PlayerPrefs.GetInt("Level"));
-             ui.updateCurrentLevelText();
-            StartDialogue(PlayerPrefs.GetInt("Level"));
+            ui.updateCurrentLevelText();
+            StartDialogue(worldNames[PlayerPrefs.GetInt("World")]+" "+(PlayerPrefs.GetInt("Level")+1));
             SceneManager.LoadScene(SceneManager.GetActiveScene().name);
          }
      }
@@ -249,25 +320,27 @@ public class GridMaker : MonoBehaviour
      */
 
     //Verifica se existe um dialogo para o nivel desejado
-    public bool VerifyExistingDialogue(int currentLevel)
+    public bool VerifyExistingDialogue(String currentLevel)
     {
-        if (dialogues.ContainsKey(currentLevel+ ""))
+        Debug.Log("Dialogue for "+currentLevel);
+        if (dialogues.ContainsKey(currentLevel))
         {
+            Debug.Log(" Found");
             return true;
         }
         else
         {
+            Debug.Log(" Not found");
             return false;
         }
     }
 
     //Verifica e inicia os dialogos caso exista algum
-    public void StartDialogue(int currentLevel)
+    public void StartDialogue(String currentLevel)
     {
-        int key = currentLevel + 1;
-        if (VerifyExistingDialogue(key))
+        if (VerifyExistingDialogue(currentLevel))
         {
-            Dialogue dialogue = dialogues[key.ToString()];
+            Dialogue dialogue = dialogues[currentLevel];
             dialogueTrigger.dialogue = dialogue;
             dialogueTrigger.TriggerDialogue();
         }
@@ -282,7 +355,7 @@ public class GridMaker : MonoBehaviour
         dialogue.sentences[0] = "Olá, meu nome é Equatron, e estou aqui para guiá-lo pelos comandos do jogo";
         dialogue.sentences[1] = "Primeiramente, para se movimentar, use as setas do teclado.";
         dialogue.sentences[2] = "Monte igualdades para passar para o próximo nível";
-        dialogues.Add("1", dialogue);
+        dialogues.Add("Igual 1", dialogue);
     }
 
     //Carrega os elementos referentes aos dialogos

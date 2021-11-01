@@ -331,7 +331,7 @@ public class CellProperty : MonoBehaviour
                         Expression ex2 = new Expression(equationParts[1]);
                         if (ex.HasErrors())
                         {
-                            Debug.Log("Erro na equação");
+                           // Debug.Log("Erro na equação");
                         }
                         else
                         {

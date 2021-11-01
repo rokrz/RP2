@@ -10,12 +10,12 @@ public class UIManager : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        currentLevelText.text = "Nível: "+(PlayerPrefs.GetInt("Level")+1).ToString();
+        currentLevelText.text = "Mundo: " + (PlayerPrefs.GetInt("World") + 1)+"\nNível: "+(PlayerPrefs.GetInt("Level")+1).ToString();
     }
 
     public void updateCurrentLevelText()
     {
-        currentLevelText.text = "Nível: " + (PlayerPrefs.GetInt("Level") + 1).ToString();
+        currentLevelText.text = "Mundo: " + (PlayerPrefs.GetInt("World") + 1)+ "\nNível: " + (PlayerPrefs.GetInt("Level") + 1).ToString();
     }
 
     // Update is called once per frame

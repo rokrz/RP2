@@ -72,6 +72,7 @@
     <Compile Include="Assets\Scripts\GridMaker.cs" />
     <Compile Include="Assets\Scripts\LevelCreator.cs" />
     <Compile Include="Assets\Scripts\LevelSelector.cs" />
+    <Compile Include="Assets\Scripts\LevelSelectorButton.cs" />
     <Compile Include="Assets\Scripts\Menu.cs" />
     <Compile Include="Assets\Scripts\PersistMusic.cs" />
     <Compile Include="Assets\Scripts\SpriteAnimator.cs" />
