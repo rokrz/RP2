@@ -13,6 +13,7 @@ public class CellProperty : MonoBehaviour
     bool isStop;
     bool isEqual;
     int currentRow, currentCol;
+    bool taok = false;
     SpriteRenderer spriteRenderer;
     SpriteAnimator animator;
 
@@ -337,8 +338,13 @@ public class CellProperty : MonoBehaviour
                         {
                             if (Convert.ToInt32(ex.Evaluate()) == Convert.ToInt32(ex2.Evaluate()))
                             {
-                                Debug.Log("Player Won!");
-                                GridMaker.instance.LoadLevelCompleteBox();
+                                if (!taok)
+                                {
+                                    taok = true;
+                                    GridMaker.instance.currentIguais++;
+                                }
+                                //Debug.Log("Player Won!");
+                                //GridMaker.instance.LoadLevelCompleteBox();
                             }
                         }
                     }

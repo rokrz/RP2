@@ -9,7 +9,7 @@ public class GridMaker : MonoBehaviour
 {
     public Dictionary<ElementTypes, char> elementValues = new Dictionary<ElementTypes, char>();
     int rows, cols;
-    public String[] worldNames = { "Igual", "IgualI", "IgualH", "Soma", "Subtracao", "Multiplica", "Divisao" };
+    public String[] worldNames = {"TESTE", "Igual", "IgualI", "IgualH", "Soma", "Subtracao", "Multiplica", "Divisao" };
     public Dictionary<String, int> levelsPerWorld = new Dictionary<string, int>();
     public GameObject cellHolder;
     public Dictionary<String,List<LevelCreator>> worldHolder = new Dictionary<String, List<LevelCreator>>();
@@ -21,6 +21,8 @@ public class GridMaker : MonoBehaviour
     public GameObject boundary;
     int currentWorld = 0;
     int currentLevel = 0;
+    int totalIguais = 0;
+    public int currentIguais = 0;
     private UIManager ui;
     public Dictionary<string, Dialogue> dialogues;
     public DialogueTrigger dialogueTrigger;
@@ -138,6 +140,11 @@ public class GridMaker : MonoBehaviour
         {
             SceneManager.LoadScene(SceneManager.GetActiveScene().name);
         }
+        if(currentIguais == totalIguais)
+        {
+            Debug.Log("Player Won!");
+            GridMaker.instance.LoadLevelCompleteBox();
+        }
     }
 
     //Desenha o Mapa
@@ -167,6 +174,7 @@ public class GridMaker : MonoBehaviour
             GameObject g = Instantiate(cellHolder, new Vector3(counter % cols, counter / rows, 0), Quaternion.identity);
             cells.Add(g);
             ElementTypes currentElement = levelHolder[currentLevel].level[i];
+            if (currentElement == ElementTypes.BlocoIgual) totalIguais += 1;
             g.GetComponent<CellProperty>().AssignInfo(counter / rows, counter % cols, currentElement);
             counter++;
         }
@@ -288,6 +296,7 @@ public class GridMaker : MonoBehaviour
     //passa para o proximo nivel
     public void NextLevel()
      {
+        totalIguais = 0;
         isEndLevel = false;
         levelCompleteBox.SetBool("isCompleted",false);
         PlayerPrefs.SetInt("Level", PlayerPrefs.GetInt("Level") + 1);
