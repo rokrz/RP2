@@ -12,7 +12,7 @@ public class Menu : MonoBehaviour
 
     public void LevelSelector()
     {
-        SceneManager.LoadScene("LevelSelector");
+        SceneManager.LoadScene("WorldSelector");
     }
 
     public void Quit()

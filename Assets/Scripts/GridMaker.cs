@@ -49,7 +49,7 @@ public class GridMaker : MonoBehaviour
         if (instance == null)
             instance = this;
         else
-            Destroy(this);
+            DontDestroyOnLoad(this);
     }
   
     //Método de inicializacao

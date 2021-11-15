@@ -5,6 +5,7 @@ SceneListBegin?
 Assets/Scenes/Menu.unity
 Assets/Scenes/Game.unity
 Assets/Scenes/LevelSelector.unity
+Assets/Scenes/WorldSelector.unity
 SceneListEnd?
 3c08375166df118bd1801438fc36b92f Unity.TextMeshPro.dll:TMPro.TMP_SelectionCaret
 77c21079ace8d76ce6e941d3dabbfe6e Unity.TextMeshPro.dll:TMPro.TMP_Dropdown
@@ -115,14 +116,15 @@ ad9173d3a69d99153f38ed4b62226129 UnityEngine.Networking.dll:UnityEngine.Networki
 9b895dcabbc1faf095c000c32d471fd0 UnityEngine.Networking.dll:UnityEngine.Networking.NetworkTransformChild
 5887ef1bc706b22b773d253fd443ceef UnityEngine.Networking.dll:UnityEngine.Networking.NetworkTransformVisualizer
 d251bf88db6c95a6b1aa0b69298da9ef UnityEngine.SpatialTracking.dll:UnityEngine.SpatialTracking.TrackedPoseDriver
+1c6091e66e33c222fe101035a4b68df4 Assembly-CSharp.dll:.LevelSelectorButton
 71bb6a6b6c8f052f948db64c7dd3ca4f Assembly-CSharp.dll:.GameManager
 71bb6a6b6c8f052f948db64c7dd3ca4f Assembly-CSharp.dll:.Menu
 b8a5e8091ab0b8861d2add371082c5e0 Unity.TextMeshPro.dll:TMPro.TMP_SpriteAsset
 669cc5151eff3d50430e7d6b0beee3f1 Assembly-CSharp.dll:.ButtonVisualUpdate
 71bb6a6b6c8f052f948db64c7dd3ca4f Assembly-CSharp.dll:.CellProperty
 e9ae9e0e740871254146ca99343b4875 Assembly-CSharp.dll:.DialogueManager
-a1e79d57090e0f488684a481d13be36e Assembly-CSharp.dll:.GridMaker
-71bb6a6b6c8f052f948db64c7dd3ca4f Assembly-CSharp.dll:.LevelSelector
+baf9d6a1ccff3a802de79edb6a72b43f Assembly-CSharp.dll:.GridMaker
+4a9c2451c2e80ffe3829436e170b3977 Assembly-CSharp.dll:.LevelSelector
 b3ab2106268377ffe25dd18ac23dca28 Unity.TextMeshPro.dll:TMPro.TMP_Asset
 71bb6a6b6c8f052f948db64c7dd3ca4f Unity.TextMeshPro.dll:TMPro.TMP_SpriteAnimator
 4fd8bf02e3089425d3502e26c44ba31a Unity.TextMeshPro.dll:TMPro.TextContainer
@@ -167,3 +169,5 @@ df434544c9f7b33d1cc7e635b180d279 Unity.TextMeshPro.dll:TMPro.TextMeshPro
 cefaa6c58a8f7e3f78e20204937b9255 Assembly-CSharp.dll:.DialogueTrigger
 8649814970b42d345b89944b862453cc Unity.TextMeshPro.dll:TMPro.TMP_SubMesh
 71bb6a6b6c8f052f948db64c7dd3ca4f Assembly-CSharp.dll:.PersistMusic
+d85288b93933a2915dd862d8b25c208f Assembly-CSharp.dll:.WorldSelector
+c869af3d9801ad3a4e2f226d22bc30ac Assembly-CSharp.dll:.PageSwiper
