@@ -10,6 +10,7 @@ public class WorldSelectorButton : MonoBehaviour
     {
         this.worldName = this.gameObject.name;
         PlayerPrefs.SetInt("MundoLS", int.Parse(worldName));
+        Debug.Log("Carregando Mundo "+worldName);
         SceneManager.LoadScene("LevelSelector");
     }
 }
