@@ -6,17 +6,12 @@ using UnityEngine.SceneManagement;
 
 public class LevelSelectorButton : MonoBehaviour
 {
-    public int Mundo;
-    public int Level;
-
-    public void SetButtonValues(int mundo, int level)
+    public void LoadLevel()
     {
-        this.Mundo = mundo;
-        this.Level = level;
-    }
-
-    public void LoadLevel(int world, int level)
-    {
+        int world;
+        int level;
+        world = int.Parse(this.gameObject.name.Split(' ')[0]);
+        level = int.Parse(this.gameObject.name.Split(' ')[1]);
         PlayerPrefs.SetInt("World", world);
         PlayerPrefs.SetInt("Level", level);
         SceneManager.LoadScene("Game");

@@ -71,6 +71,7 @@
     <Compile Include="Assets\Scripts\GameManager.cs" />
     <Compile Include="Assets\Scripts\GridMaker.cs" />
     <Compile Include="Assets\Scripts\LevelCreator.cs" />
+    <Compile Include="Assets\Scripts\LevelInfo.cs" />
     <Compile Include="Assets\Scripts\LevelSelector.cs" />
     <Compile Include="Assets\Scripts\LevelSelectorButton.cs" />
     <Compile Include="Assets\Scripts\Menu.cs" />
@@ -79,6 +80,7 @@
     <Compile Include="Assets\Scripts\SpriteAnimator.cs" />
     <Compile Include="Assets\Scripts\UIManager.cs" />
     <Compile Include="Assets\Scripts\WorldSelector.cs" />
+    <Compile Include="Assets\Scripts\WorldSelectorButton.cs" />
     <None Include="Assets\TextMesh Pro\Resources\Shaders\TMP_SDF-Surface-Mobile.shader" />
     <None Include="Assets\TextMesh Pro\Resources\LineBreaking Leading Characters.txt" />
     <None Include="Assets\TextMesh Pro\Resources\Shaders\TMPro_Properties.cginc" />

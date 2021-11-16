@@ -8,6 +8,8 @@ using UnityEngine.EventSystems;
 
 public class LevelSelector : MonoBehaviour
 {
+    public GameObject levelWiki;
+    private LevelInfo li;
     public GameObject levelHolder; // panel
     public GameObject levelIcon; //button prefab
     public GameObject thisCanvas;
@@ -17,18 +19,31 @@ public class LevelSelector : MonoBehaviour
     private Rect iconDimensions;
     private int amountPerPage;
     private int currentLevelCount;
+    private int originWorld;
 
     // Start is called before the first frame update
     void Start()
     {
-        panelDimensions = levelHolder.GetComponent<RectTransform>().rect;
-        iconDimensions = levelIcon.GetComponent<RectTransform>().rect;
-        int maxInARow = Mathf.FloorToInt((panelDimensions.width + iconSpacing.x) / (iconDimensions.width + iconSpacing.x));
-        int maxInACol = Mathf.FloorToInt((panelDimensions.height + iconSpacing.y) / (iconDimensions.height + iconSpacing.y));
-        amountPerPage = maxInARow * maxInACol;
-        Debug.Log(amountPerPage);
-        int totalPages = Mathf.CeilToInt((float)numberOfLevels / amountPerPage);
-        LoadPanels(totalPages);
+        originWorld = PlayerPrefs.GetInt("MundoLS");
+        if (originWorld!=null)
+        {
+            li = levelWiki.GetComponent<LevelInfo>();
+            li.loadLevelsPerWorld();
+            numberOfLevels = li.levelsPerWorld[li.worldNames[originWorld]];
+            panelDimensions = levelHolder.GetComponent<RectTransform>().rect;
+            iconDimensions = levelIcon.GetComponent<RectTransform>().rect;
+            int maxInARow = Mathf.FloorToInt((panelDimensions.width + iconSpacing.x) / (iconDimensions.width + iconSpacing.x));
+            int maxInACol = Mathf.FloorToInt((panelDimensions.height + iconSpacing.y) / (iconDimensions.height + iconSpacing.y));
+            amountPerPage = maxInARow * maxInACol;
+            Debug.Log(amountPerPage);
+            int totalPages = Mathf.CeilToInt((float)numberOfLevels / amountPerPage);
+            LoadPanels(totalPages);
+        }
+        else
+        {
+            SceneManager.LoadScene("WorldSelector");
+        }
+        
     }
     void LoadPanels(int numberOfPanels)
     {
@@ -58,13 +73,13 @@ public class LevelSelector : MonoBehaviour
     }
     void LoadIcons(int numberOfIcons, GameObject parentObject)
     {
-        for (int i = 1; i <= numberOfIcons; i++)
+        for (int i = 0; i < numberOfIcons; i++)
         {
             currentLevelCount++;
             GameObject icon = Instantiate(levelIcon) as GameObject;
             icon.transform.SetParent(thisCanvas.transform, false);
             icon.transform.SetParent(parentObject.transform);
-            icon.name = "Level " + i;
+            icon.name = originWorld+" "+i;
             icon.GetComponentInChildren<Text>().text=("Level " + currentLevelCount);
         }
     }

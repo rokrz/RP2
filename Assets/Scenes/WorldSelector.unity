@@ -651,11 +651,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ebf8fb46f840aab40a897fca6a441e70, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  levelInfo: {fileID: 1276667281982809092, guid: 2e7eea712cc308a4c95abf5faeaf2c79,
+    type: 3}
   worldHolder: {fileID: 453536731}
-  worldIcon: {fileID: 7039506621687903541, guid: 0ab21be8fc68bab4f9b51c7ce50b7f10,
+  worldIcon: {fileID: 7525829602589273212, guid: 4eb38bd138f1aec46abe3e9fc8b01359,
     type: 3}
   thisCanvas: {fileID: 737730431}
-  numberOfLevels: 50
+  numberOfWorlds: 50
   iconSpacing: {x: 0, y: 0}
 --- !u!1 &1524346629
 GameObject:

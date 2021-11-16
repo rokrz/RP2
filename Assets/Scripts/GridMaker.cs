@@ -7,10 +7,12 @@ using UnityEngine.UI;
 
 public class GridMaker : MonoBehaviour
 {
+    public GameObject levelInfo;
+    private LevelInfo li;
     public Dictionary<ElementTypes, char> elementValues = new Dictionary<ElementTypes, char>();
     int rows, cols;
-    public String[] worldNames = {"TESTE", "Igual", "IgualI", "IgualH", "Soma", "Subtracao", "Multiplica", "Divisao" };
-    public Dictionary<String, int> levelsPerWorld = new Dictionary<string, int>();
+    public String[] worldNames;
+    public Dictionary<String, int> levelsPerWorld;
     public GameObject cellHolder;
     public Dictionary<String,List<LevelCreator>> worldHolder = new Dictionary<String, List<LevelCreator>>();
     public List<LevelCreator> levelHolder;
@@ -49,15 +51,18 @@ public class GridMaker : MonoBehaviour
         if (instance == null)
             instance = this;
         else
-            DontDestroyOnLoad(this);
+            Destroy(this);
     }
   
     //Método de inicializacao
     void Start()
     {
+        li = levelInfo.GetComponent<LevelInfo>();
+        worldNames = li.worldNames;
+        li.loadLevelsPerWorld();
+        levelsPerWorld = li.levelsPerWorld;
         isEndLevel = false;
         InitializeElementValues();
-        loadLevelsPerWorld();
         InitializeLevelMap();
         InitializeDialogueElements();
         ui = GameObject.Find("Canvas").GetComponent<UIManager>();
@@ -103,6 +108,7 @@ public class GridMaker : MonoBehaviour
     {
         Debug.Log("WorldNames size: "+worldNames.Length);
         foreach(String worldName in worldNames){
+            Debug.Log("Indexing "+worldName);
             List<LevelCreator> auxList = new List<LevelCreator>();
             for (int i = 0; i < levelsPerWorld[worldName]; i++)
             {
@@ -120,14 +126,6 @@ public class GridMaker : MonoBehaviour
         }
     }
 
-    void loadLevelsPerWorld()
-    {
-        foreach(String s in worldNames)
-        {
-            levelsPerWorld.Add(s,1);
-        }
-    }
-
     //Método de update
     void Update()
     {
@@ -142,7 +140,7 @@ public class GridMaker : MonoBehaviour
         }
         if(currentIguais == totalIguais)
         {
-            Debug.Log("Player Won!");
+            //Debug.Log("Player Won!");
             GridMaker.instance.LoadLevelCompleteBox();
         }
     }

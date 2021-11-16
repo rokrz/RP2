@@ -996,7 +996,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   levelHolder: {fileID: 697690664}
-  levelIcon: {fileID: 7039506621687903541, guid: 0ab21be8fc68bab4f9b51c7ce50b7f10,
+  levelIcon: {fileID: 7374999886673144890, guid: a2c481a4fd9ab94418f48cf012c6af6a,
     type: 3}
   thisCanvas: {fileID: 892813626}
   numberOfLevels: 50

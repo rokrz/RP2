@@ -8,7 +8,7 @@ using UnityEngine.EventSystems;
 
 public class WorldSelector : MonoBehaviour
 {
-    public GridMaker gridMaker;
+    public GameObject levelInfo;
     public GameObject worldHolder; // panel
     public GameObject worldIcon; //button prefab
     public GameObject thisCanvas;
@@ -24,16 +24,7 @@ public class WorldSelector : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        gridMaker = GameObject.FindObjectOfType<GridMaker>();
-        if (gridMaker != null)
-        {
-            Debug.Log("Grid is not null");
-        }
-        else
-        {
-            Debug.Log("Grid is null broo");
-        }
-        worldNames = gridMaker.worldNames;
+        worldNames = levelInfo.GetComponent<LevelInfo>().worldNames;
         numberOfWorlds = worldNames.Length;
         panelDimensions = worldHolder.GetComponent<RectTransform>().rect;
         iconDimensions = worldIcon.GetComponent<RectTransform>().rect;
@@ -74,12 +65,12 @@ public class WorldSelector : MonoBehaviour
     {
         for (int i = 0; i < numberOfIcons; i++)
         {
-            currentLevelCount++;
             GameObject icon = Instantiate(worldIcon) as GameObject;
             icon.transform.SetParent(thisCanvas.transform, false);
             icon.transform.SetParent(parentObject.transform);
-            icon.name = "Level " + i;
-            icon.GetComponentInChildren<Text>().text = ("Mundo "+worldNames[currentLevelCount]);
+            icon.name = currentLevelCount.ToString();
+            icon.GetComponentInChildren<Text>().text = (worldNames[currentLevelCount]);
+            currentLevelCount++;
         }
     }
 
