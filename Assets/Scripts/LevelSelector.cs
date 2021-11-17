@@ -89,6 +89,11 @@ public class LevelSelector : MonoBehaviour
         SceneManager.LoadScene("Menu");
     }
 
+    public void ReturnToWorlds()
+    {
+        SceneManager.LoadScene("WorldSelector");
+    }
+
     // Update is called once per frame
     void Update()
     {
