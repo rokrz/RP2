@@ -5,11 +5,33 @@ using UnityEngine;
 
 public class PageSwiper : MonoBehaviour, IDragHandler, IEndDragHandler
 {
+
     private Vector3 panelLocation;
     public float percentThreshold = 0.2f;
     public float easing = 0.5f;
     public int totalPages = 1;
     private int currentPage = 1;
+
+    public void PageSwipe(bool direcao)
+    {
+
+        Vector3 newLocation = panelLocation;
+        if (direcao && currentPage < totalPages)
+        {
+            if (currentPage == totalPages) currentPage = 1;
+            else currentPage++;
+            newLocation += new Vector3(-Screen.width, 0, 0);
+        }
+        else if (!direcao && currentPage > 1)
+        {
+            if (currentPage == 1) currentPage = totalPages;
+            else currentPage--;
+            newLocation += new Vector3(Screen.width, 0, 0);
+        }
+        StartCoroutine(SmoothMove(transform.position, newLocation, easing));
+        panelLocation = newLocation;
+
+    }
 
     // Start is called before the first frame update
     void Start()
@@ -55,4 +77,5 @@ public class PageSwiper : MonoBehaviour, IDragHandler, IEndDragHandler
             yield return null;
         }
     }
+    
 }

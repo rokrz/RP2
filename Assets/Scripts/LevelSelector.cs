@@ -12,6 +12,12 @@ public class LevelSelector : MonoBehaviour
     private LevelInfo li;
     public GameObject levelHolder; // panel
     public GameObject levelIcon; //button prefab
+
+    public GameObject PageControl; //button prefab
+    public GameObject UIPanel; // panel
+    public PageSwiper swiper;
+
+
     public GameObject thisCanvas;
     public int numberOfLevels = 50; // number of levels
     public Vector2 iconSpacing; 
@@ -38,6 +44,31 @@ public class LevelSelector : MonoBehaviour
             Debug.Log(amountPerPage);
             int totalPages = Mathf.CeilToInt((float)numberOfLevels / amountPerPage);
             LoadPanels(totalPages);
+            if (totalPages > 1)
+            {
+                GameObject icontrue = Instantiate(PageControl) as GameObject;
+                icontrue.transform.SetParent(thisCanvas.transform, false);
+                icontrue.transform.SetParent(UIPanel.transform);
+                icontrue.name = "true";
+                icontrue.GetComponentInChildren<Text>().text = ("Next");
+                icontrue.transform.position = new Vector3(840, 90, 0);
+                //icontrue.GetComponent<PageControl>().setPG(swiper);
+                GameObject.Instantiate(icontrue);
+
+
+                GameObject iconfalse = Instantiate(PageControl) as GameObject;
+                iconfalse.transform.SetParent(thisCanvas.transform, false);
+                iconfalse.transform.SetParent(UIPanel.transform);
+                iconfalse.name = "false";
+                iconfalse.GetComponentInChildren<Text>().text = ("Prev");
+                iconfalse.transform.position = new Vector3(170, 90, 0);
+                //iconfalse.GetComponent<PageControl>().setPG(swiper);
+                GameObject.Instantiate(iconfalse);
+
+            }
+
+            
+
         }
         else
         {
@@ -48,7 +79,7 @@ public class LevelSelector : MonoBehaviour
     void LoadPanels(int numberOfPanels)
     {
         GameObject panelClone = Instantiate(levelHolder) as GameObject;
-        PageSwiper swiper = levelHolder.AddComponent<PageSwiper>();
+        swiper = levelHolder.AddComponent<PageSwiper>();
         swiper.totalPages = numberOfPanels;
 
         for (int i = 1; i <= numberOfPanels; i++)

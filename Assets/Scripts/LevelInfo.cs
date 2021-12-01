@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class LevelInfo : MonoBehaviour
 {
-    public string[] worldNames = { "TESTE", "Igual", "IgualI", "IgualH", "Soma", "Subtracao", "Multiplica", "Divisao" };
+    public string[] worldNames = { "Igual", "Soma", "Subtracao", "Multiplica", "Divisao" };
     public Dictionary<string,int> levelsPerWorld= new Dictionary<string, int>();
 
     private void Start()
@@ -19,7 +19,7 @@ public class LevelInfo : MonoBehaviour
             foreach (string s in worldNames)
             {
                 Debug.Log("Indexing " + s + " in LevelWiki");
-                levelsPerWorld.Add(s, 1);
+                levelsPerWorld.Add(s, 25);
             }
         }
         
