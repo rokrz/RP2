@@ -343,8 +343,14 @@ public class CellProperty : MonoBehaviour
                                     taok = true;
                                     GridMaker.instance.currentIguais++;
                                 }
+                                
                                 //Debug.Log("Player Won!");
                                 //GridMaker.instance.LoadLevelCompleteBox();
+                            }
+                            else if (taok)
+                            {
+                                taok = false;
+                                GridMaker.instance.currentIguais--;
                             }
                         }
                     }
