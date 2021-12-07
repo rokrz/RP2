@@ -44,10 +44,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   worldNames:
-  - TESTE
   - Igual
-  - IgualI
-  - IgualH
   - Soma
   - Subtracao
   - Multiplica

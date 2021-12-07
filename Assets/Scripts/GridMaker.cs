@@ -61,6 +61,7 @@ public class GridMaker : MonoBehaviour
         worldNames = li.worldNames;
         li.loadLevelsPerWorld();
         levelsPerWorld = li.levelsPerWorld;
+
         isEndLevel = false;
         InitializeElementValues();
         InitializeLevelMap();
@@ -357,12 +358,109 @@ public class GridMaker : MonoBehaviour
     public void LoadDialogues()
     {
         Dialogue dialogue = new Dialogue();
+        //Igual 1
         dialogue.name = "Equatron";
         dialogue.sentences = new string[3];
         dialogue.sentences[0] = "Olá, meu nome é Equatron, e estou aqui para guiá-lo pelos comandos do jogo";
         dialogue.sentences[1] = "Primeiramente, para se movimentar, use as setas do teclado.";
         dialogue.sentences[2] = "Monte igualdades para passar para o próximo nível";
         dialogues.Add("Igual 1", dialogue);
+        //Igual 2
+        dialogue = new Dialogue();
+        dialogue.name = "Equatron";
+        dialogue.sentences = new string[1];
+        dialogue.sentences[0] = "Dá para arrastar mais de um bloco por vez!";
+        dialogues.Add("Igual 2", dialogue);
+        //Igual 3
+        dialogue = new Dialogue();
+        dialogue.name = "Equatron";
+        dialogue.sentences = new string[1];
+        dialogue.sentences[0] = "Para completar as fases, faça com que os dois lados do igual (=) estejam equivalentes!";
+        dialogues.Add("Igual 3", dialogue);
+        //Igual 4
+        dialogue = new Dialogue();
+        dialogue.name = "Equatron";
+        dialogue.sentences = new string[1];
+        dialogue.sentences[0] = "Você pode substituir os blocos, empurrando eles!";
+        dialogues.Add("Igual 4", dialogue);
+        //Igual 5
+        dialogue = new Dialogue();
+        dialogue.name = "Equatron";
+        dialogue.sentences = new string[1];
+        dialogue.sentences[0] = "Você pode montar tanto na horizontal quanto na vertical!";
+        dialogues.Add("Igual 5", dialogue);
+        //Soma 1
+        dialogue = new Dialogue();
+        dialogue.name = "Equatron";
+        dialogue.sentences = new string[2];
+        dialogue.sentences[0] = "Quando voce vir o símbolo de soma, +, você pode juntar os valores de dois números";
+        dialogue.sentences[1] = "Por exemplo, 1+1=2, 1+2=3!";
+        dialogues.Add("Soma 1", dialogue);
+        //Soma 2
+        dialogue = new Dialogue();
+        dialogue.name = "Equatron";
+        dialogue.sentences = new string[2];
+        dialogue.sentences[0] = "A ordem dos números não altera o resultado final!";
+        dialogue.sentences[1] = "Complete as duas equações para passar de fase";
+        dialogues.Add("Soma 2", dialogue);
+        //Soma 3
+        dialogue = new Dialogue();
+        dialogue.name = "Equatron";
+        dialogue.sentences = new string[2];
+        dialogue.sentences[0] = "As vezes, é necessário somar mais de dois números para chegar no resultado necessário";
+        dialogue.sentences[1] = "Por exemplo, 1+1+1=3, 1+2+3=6!";
+        dialogues.Add("Soma 3", dialogue);
+        //Soma 4
+        dialogue = new Dialogue();
+        dialogue.name = "Equatron";
+        dialogue.sentences = new string[1];
+        dialogue.sentences[0] = "Tente mais uma vez agora! Lembra do nível anterior!";
+        dialogues.Add("Soma 4", dialogue);
+        //Soma 5
+        dialogue = new Dialogue();
+        dialogue.name = "Equatron";
+        dialogue.sentences = new string[2];
+        dialogue.sentences[0] = "O 0 é o elemento neutro da adição! Qualquer número somado com ele, resulta nele mesmo!";
+        dialogue.sentences[1] = "Por exemplo, 1+0=1, 2+0=2, e por ai vai!";
+        dialogues.Add("Soma 5", dialogue);
+        //Subtracao 1
+        dialogue = new Dialogue();
+        dialogue.name = "Equatron";
+        dialogue.sentences = new string[3];
+        dialogue.sentences[0] = "Para subtrair,você pega o segundo elemento, e tira ele do primeiro!";
+        dialogue.sentences[1] = "Como resultado você tem o que sobra do primeiro";
+        dialogue.sentences[2] = "Como por exemplo: se eu tenho 3 balas, e dou 2 para um amigo, fico com 1 só!";
+        dialogues.Add("Subtracao 1", dialogue);
+        //Subtracao 2
+        dialogue = new Dialogue();
+        dialogue.name = "Equatron";
+        dialogue.sentences = new string[3];
+        dialogue.sentences[0] = "Assim como na soma, a subtração também tem um elemento neutro!";
+        dialogue.sentences[1] = "Esse elemento é o 0. Toda vez que você tira 0 de um número, ele continua igual.";
+        dialogue.sentences[2] = "Como por exemplo: se eu tenho 5 balas, e dou 0 para um amigo, eu continuo com 5!";
+        dialogues.Add("Subtracao 2", dialogue);
+        //Subtracao 3
+        dialogue = new Dialogue();
+        dialogue.name = "Equatron";
+        dialogue.sentences = new string[2];
+        dialogue.sentences[0] = "Se você remove um número dele mesmo, você fica com 0!";
+        dialogue.sentences[1] = "Como por exemplo: se eu tenho 10 balas, e dou 10 para meus amigos, fico nenhuma bala!";
+        dialogues.Add("Subtracao 3", dialogue);
+        //Subtracao 4
+        dialogue = new Dialogue();
+        dialogue.name = "Equatron";
+        dialogue.sentences = new string[3];
+        dialogue.sentences[0] = "Diferente da soma, a ordem na subtração importa sim!";
+        dialogue.sentences[1] = "Já que sempre retiro o segundo número do primeiro, mudar a ordem deles muda também nosso resultado!";
+        dialogue.sentences[2] = "Como por exemplo: se eu tenho 5 balas, e dou 7 para um amigo, fico devendo 2 balas para ele ainda!";
+        dialogues.Add("Subtracao 4", dialogue);
+        //Subtracao 5
+        dialogue = new Dialogue();
+        dialogue.name = "Equatron";
+        dialogue.sentences = new string[2];
+        dialogue.sentences[0] = "Sempre que você retira de um número uma quantidade maior do que ele, você acaba com um número negativo.";
+        dialogue.sentences[1] = "O número negativo representa uma falta. Algo que nãoexiste, mas precisa ser preenchido";
+        dialogues.Add("Subtracao 5", dialogue);
     }
 
     //Carrega os elementos referentes aos dialogos
