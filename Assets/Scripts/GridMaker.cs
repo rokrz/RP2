@@ -130,6 +130,10 @@ public class GridMaker : MonoBehaviour
     //Método de update
     void Update()
     {
+        if (isEndLevel && Input.GetKeyDown(KeyCode.Space))
+        {
+            NextLevel();
+        }
         //Retirar para versão final
         if (Input.GetKeyDown(KeyCode.N))
         {
@@ -141,7 +145,6 @@ public class GridMaker : MonoBehaviour
         }
         if(currentIguais == totalIguais)
         {
-            //Debug.Log("Player Won!");
             GridMaker.instance.LoadLevelCompleteBox();
         }
     }

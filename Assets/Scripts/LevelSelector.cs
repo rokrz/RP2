@@ -51,7 +51,7 @@ public class LevelSelector : MonoBehaviour
                 icontrue.transform.SetParent(UIPanel.transform);
                 icontrue.name = "true";
                 icontrue.GetComponentInChildren<Text>().text = ("Next");
-                icontrue.transform.position = new Vector3(840, 90, 0);
+                icontrue.transform.position = new Vector3(920, 90, 0);
                 //icontrue.GetComponent<PageControl>().setPG(swiper);
                 GameObject.Instantiate(icontrue);
 

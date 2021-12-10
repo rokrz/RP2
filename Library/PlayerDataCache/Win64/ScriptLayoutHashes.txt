@@ -1,6 +1,6 @@
 Win64
 PlayerPath?
-D:/RP2/Equatron.exe
+C:/Users/Usuario/Desktop/Equatron/Equatron.exe
 SceneListBegin?
 Assets/Scenes/Opening.unity
 Assets/Scenes/Menu.unity
@@ -118,6 +118,7 @@ ad9173d3a69d99153f38ed4b62226129 UnityEngine.Networking.dll:UnityEngine.Networki
 5887ef1bc706b22b773d253fd443ceef UnityEngine.Networking.dll:UnityEngine.Networking.NetworkTransformVisualizer
 d251bf88db6c95a6b1aa0b69298da9ef UnityEngine.SpatialTracking.dll:UnityEngine.SpatialTracking.TrackedPoseDriver
 71bb6a6b6c8f052f948db64c7dd3ca4f Assembly-CSharp.dll:.LevelSelectorButton
+03471cbebab34941d57356ee3690ed99 Assembly-CSharp.dll:.VideoController
 71bb6a6b6c8f052f948db64c7dd3ca4f Assembly-CSharp.dll:.GameManager
 71bb6a6b6c8f052f948db64c7dd3ca4f Assembly-CSharp.dll:.Menu
 b8a5e8091ab0b8861d2add371082c5e0 Unity.TextMeshPro.dll:TMPro.TMP_SpriteAsset

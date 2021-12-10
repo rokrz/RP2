@@ -3,31 +3,30 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 using UnityEngine.Video;
+using UnityEngine.SceneManagement;
 
 public class VideoController : MonoBehaviour
 {
     public GameObject myMovie;
-    public GameObject panel;
-    public Camera tela;
-    public float tempo = 10;
+    public float tempo;
     // Start is called before the first frame update
     void Start()
     {
-        
-        myMovie.SetActive(true);
-        myMovie.GetComponent<VideoPlayer>().Play();
-        Destroy(myMovie, tempo);
-
+        myMovie.GetComponent<VideoPlayer>().Prepare();
+        myMovie.GetComponent<VideoPlayer>().Play();        
     }
 
-    private void OnGUI()
-    {
-        //GUI.DrawTexture(new Rect(0, 0, Screen.width, Screen.height), myMovie.texture);
-    }
-
-    // Update is called once per frame
     void Update()
     {
         
+        if (Input.GetKeyDown(KeyCode.Space) || Input.GetKeyDown(KeyCode.Escape) || Input.GetKeyDown(KeyCode.KeypadEnter))
+        {
+            SceneManager.LoadScene("Menu");
+        }
+        else if (myMovie.GetComponent<VideoPlayer>().isPaused)
+        {
+            Destroy(myMovie, tempo);
+            SceneManager.LoadScene("Menu");
+        }
     }
 }

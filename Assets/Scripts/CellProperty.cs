@@ -293,12 +293,12 @@ public class CellProperty : MonoBehaviour
                             break;
                         }
                     }
-                    //List<GameObject> aux = new List<GameObject>();
-                    //for(int j = equationPreEqual.Count-1; j >= 0; j--)
-                    //{
-                    //    aux.Add(equationPreEqual[j]);
-                    //}
-                    //equationPreEqual = aux;
+                    List<GameObject> aux = new List<GameObject>();
+                    for(int j = equationPreEqual.Count-1; j >= 0; j--)
+                    {
+                        aux.Add(equationPreEqual[j]);
+                    }
+                    equationPreEqual = aux;
 
                     for (int r = currentRow + 1; r <= GridMaker.instance.Rows - 1; r++)
                     {
@@ -311,7 +311,7 @@ public class CellProperty : MonoBehaviour
                             break;
                         }
                     }
-                    equationPostEqual.Reverse();
+                    //equationPostEqual.Reverse();
                 }
                 if (equationPreEqual.Count >= 1)
                 {
