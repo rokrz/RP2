@@ -311,8 +311,9 @@ public class CellProperty : MonoBehaviour
                             break;
                         }
                     }
-                    //equationPostEqual.Reverse();
+                    equationPostEqual.Reverse();
                 }
+                
                 if (equationPreEqual.Count >= 1)
                 {
                     string equation = "";
@@ -332,7 +333,12 @@ public class CellProperty : MonoBehaviour
                         Expression ex2 = new Expression(equationParts[1]);
                         if (ex.HasErrors())
                         {
-                           // Debug.Log("Erro na equação");
+                            // Debug.Log("Erro na equação");
+                            if (taok)
+                            {
+                                taok = false;
+                                GridMaker.instance.currentIguais--;
+                            }
                         }
                         else
                         {
@@ -354,6 +360,16 @@ public class CellProperty : MonoBehaviour
                             }
                         }
                     }
+                    else if(taok)
+                    {
+                        taok = false;
+                        GridMaker.instance.currentIguais--;
+                    }
+                }
+                else if (taok)
+                {
+                    taok = false;
+                    GridMaker.instance.currentIguais--;
                 }
             }
         }

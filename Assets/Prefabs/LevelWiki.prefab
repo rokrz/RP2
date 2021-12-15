@@ -43,6 +43,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8a36a60cc3401424b9727c60017fe5bd, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  niveis: 15
   worldNames:
   - Igual
   - Soma

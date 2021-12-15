@@ -464,6 +464,53 @@ public class GridMaker : MonoBehaviour
         dialogue.sentences[0] = "Sempre que você retira de um número uma quantidade maior do que ele, você acaba com um número negativo.";
         dialogue.sentences[1] = "O número negativo representa uma falta. Algo que nãoexiste, mas precisa ser preenchido";
         dialogues.Add("Subtracao 5", dialogue);
+        //Multiplica 1
+        dialogue = new Dialogue();
+        dialogue.name = "Equatron";
+        dialogue.sentences = new string[2];
+        dialogue.sentences[0] = "Multiplicar um número por outro, é o mesmo que somá-lo essa mesma quantidade de vezes...";
+        dialogue.sentences[1] = "Quando multiplicamos, por exemplo, 3 por 3, é o mesmo que fazer 3+3+3!";
+        dialogues.Add("Multiplica 1", dialogue);
+        //Multiplica 3
+        dialogue = new Dialogue();
+        dialogue.name = "Equatron";
+        dialogue.sentences = new string[1];
+        dialogue.sentences[0] = "Aqui podemos ver o mesmo conceito do nível anterior. Mas sem a parte das somas!";
+        dialogues.Add("Multiplica 3", dialogue);
+        //Multiplica 4
+        dialogue = new Dialogue();
+        dialogue.name = "Equatron";
+        dialogue.sentences = new string[1];
+        dialogue.sentences[0] = "Na multiplicação, assim como na soma, a ordem dos fatores não altera o resultado!";
+        dialogues.Add("Multiplica 4", dialogue);
+        //Multiplica 5
+        dialogue = new Dialogue();
+        dialogue.name = "Equatron";
+        dialogue.sentences = new string[2];
+        dialogue.sentences[0] = "Na multiplicação também há um número conhecido como Elemento Neutro!";
+        dialogue.sentences[1] = "Todo número multiplicado por 1 resulta nele mesmo... Fazendo com que 1 seja o Elemento Neutro da mutliplicação!";
+        dialogues.Add("Multiplica 5", dialogue);
+        //Divisao 1
+        dialogue = new Dialogue();
+        dialogue.name = "Equatron";
+        dialogue.sentences = new string[2];
+        dialogue.sentences[0] = "Dividir um número, significa fazer múltiplas subtrações do divisor da quantidade inicial";
+        dialogue.sentences[1] = "De uma forma mais simples, quando dividimos 6 por 3, queremos saber quantas vezes podemos retirar o número 3 do número 6!";
+        dialogues.Add("Divisao 1", dialogue);
+        //Divisao 3
+        dialogue = new Dialogue();
+        dialogue.name = "Equatron";
+        dialogue.sentences = new string[2];
+        dialogue.sentences[0] = "Na divisão, a ordem dos fatores altera o resultado, já que o nosso divisor muda!";
+        dialogue.sentences[1] = "Tente fazer essa fase! Se colocar errado, apertar R reinicia o nível";
+        dialogues.Add("Divisao 3", dialogue);
+        //Divisao 5
+        dialogue = new Dialogue();
+        dialogue.name = "Equatron";
+        dialogue.sentences = new string[2];
+        dialogue.sentences[0] = "Dividir um número por 1, sempre retornará ele mesmo!";
+        dialogue.sentences[1] = "Mas dividir um número por 0 é impossível! Não esqueça disso hein!";
+        dialogues.Add("Divisao 5", dialogue);
     }
 
     //Carrega os elementos referentes aos dialogos
